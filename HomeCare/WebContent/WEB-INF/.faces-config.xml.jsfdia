@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:" SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::0" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="login::#paginas#publico#index.jsf"
+    NAME="output" PATH="/paginas/publico/index.jsf"
+    TARGET="rules:#paginas#publico#index.jsf" TITLE="login" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#paginas#privado#index.jsf"
+  PATH="/paginas/privado/index.jsf" SHAPE="240,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules::1" SHAPE="32,129,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::1" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="principal::#paginas#privado#index.jsf"
+    NAME="output" PATH="/paginas/privado/index.jsf"
+    TARGET="rules:#paginas#privado#index.jsf" TITLE="principal" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#paginas#publico#index.jsf"
+  PATH="/paginas/publico/index.jsf" SHAPE="240,145,0,0" model-entity="JSFProcessGroup"/>
+</PROCESS>
