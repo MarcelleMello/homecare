@@ -10,7 +10,7 @@ import javax.faces.bean.ViewScoped;
 
 
 @ViewScoped
-@ManagedBean(name="funcionarioBean")
+@ManagedBean(name="cadastrarFuncionarioBean")
 public class FuncionarioBean extends AbstractBean implements Serializable{
 
 	private static final long serialVersionUID = 6712522758268465657L;

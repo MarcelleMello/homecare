@@ -54,7 +54,7 @@
 	color: #373737;
 }
 
-#cadastroLabel {
+#cadastroLabel, #consultaLabel {
 	font-size: 28px;
 	
 }

@@ -57,7 +57,7 @@
 <h:body>
 
 	<header class="aw-topbar">
-		<h:graphicImage library="algaworks" name="images/logo.png" />
+		<h:graphicImage library="algaworks" name="images/transparente.png" />
 		
 		<a href="#" class="aw-toggle  js-toggle"><i class="fa  fa-bars"></i></a>
 	</header>
@@ -102,6 +102,21 @@
 
 	
 	</h:form>
+	
+				<div class="aw-bottombar" align="center">
+			 
+				<div style=" color:withe; margin-top:2px">© 2017</div>
+			     	
+			     	<div style=" color:withe; margin-top:2px; ">Navegadores versões: Internet Explorer 10.0.0.9 ou superior, Google Chrome 43 ou superior</div>
+			     	
+			     	<div style=" color:white; margin-top:5px">
+				    	<h:outputText value=" Você está acessando o ambiente DESENVOLVIMENTO " rendered="#{serverBean.ambiente eq 'DESENVOLVIMENTO'}"/>
+				    	<h:outputText value=" Você está acessando o ambiente HOMOLOGAÇÃO " rendered="#{serverBean.ambiente eq 'HOMOLOGACAO'}"/>
+				    	<h:outputText value=" Você está acessando o ambiente PRODUÇÃO " rendered="#{serverBean.ambiente eq 'PRODUCAO'}"/>
+				    	<h:outputText value=" Você está acessando o ambiente LOCAL " rendered="#{serverBean.ambiente eq 'LOCALHOST'}"/>		     		
+				    	<h:outputText value=" - #{serverBean.nomeServidor} - #{serverBean.ip}" rendered="#{not empty serverBean.nomeServidor and not empty serverBean.ip}"/>	
+			     	</div>
+			</div>
 	<section class="aw-content  js-content">
 		<ui:insert name="content" />
 	</section>
