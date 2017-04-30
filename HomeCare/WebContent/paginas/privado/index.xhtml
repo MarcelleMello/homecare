@@ -3,24 +3,120 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui">	
 	
-	
+	<h:head></h:head>
 	
 	<ui:define name="content">
 	
-
+<f:view>
 		<h:form id="form"  >
 
-			
-			
-			
-			
-			
 		
-			
+		<p:messages id="msgCadastroFunc" globalOnly="false" closable="true"/>		
+		
+		<div id="cadastroLabel" align="center">
+			 <h1>Cadastro de Funcionários</h1>
+		</div> 
+		 
+	<br/>
+	<!-- CADASTRO DOS FUNCIONARIOS -->
+					<div class="labels" align="center">				
+					<h:panelGrid  id="CadastroFunc" columns="4" cellpadding="5" cellspacing="5">						
+						
+						<h:outputText value="Nome: "/> 			
+							<p:inputText id="nome" required="#{param['form:btnCadastrar'] ne null}"  
+							requiredMessage="O campo Nome deve ser preenchido.  " size="22" maxlength="60" />
+											   
+						<h:outputText value="Telefone: "/> 			
+							<p:inputText id="telefone"  required="#{param['form:btnCadastrar'] ne null}" 
+							requiredMessage="O campo Telefone deve ser preenchido.  " size="18" maxlength="60" />							
+						 
+						<h:outputText value="Matrícula: "/> 			
+							<p:inputText id="matricula"  required="#{param['form:btnCadastrar'] ne null}"  
+							requiredMessage="O campo Matrícula deve ser preenchido.  " size="18" maxlength="60" />						 
+						   
+						<h:outputText value="Micro Area: "/> 			
+							<p:inputText id="microarea"  required="#{param['form:btnCadastrar'] ne null}" 
+							requiredMessage="O campo Micro Area deve ser preenchido. " size="18" maxlength="60" />							   
+						   
+						<h:outputText value="Senha: "/> 			
+							<p:inputText id="senha"  required="#{param['form:btnCadastrar'] ne null}" 
+							requiredMessage="O campo Senha deve ser preenchido.  " size="18" maxlength="60" />
+							   						
+						<h:outputText value="Perfil:" styleClass="nomeCampo" />
+							<p:selectOneMenu id="perfil" required="#{param['form:btnCadastrar'] ne null}"  
+							requiredMessage="O campo Perfil deve ser preenchido.  " size="30" maxlength="60">
+						          <f:selectItem itemLabel="Selecione" itemValue="" />	
+						    </p:selectOneMenu>							        
+									
+						<h:outputText value="Id_Comunidade: "/> 			
+							<p:inputText id="idcomunidade"  required="#{param['form:btnCadastrar'] ne null}" 
+							requiredMessage="O campo Id_comunidade deve ser preenchido.  " size="18" maxlength="60">
+							</p:inputText>									
+						   
+						<h:outputText value="Ativo:" styleClass="nomeCampo" />						
+							<p:selectOneRadio id="ativo" >													
+						            <f:selectItem itemLabel="Ativo" itemValue="Ativo" /> 					           
+						            <f:selectItem itemLabel="Inativo"  itemValue="Inativo" />					        
+					        </p:selectOneRadio>						
+						
+					</h:panelGrid>
+					</div>
+					<div class="btns" align="center">
+					
+						<p:commandButton  id="btnCadastrar" icon="fa fa-check" value="Cadastrar" style="margin:10px 10px 10px 10px;" 
+						                  process="@this matricula nome perfil ativo senha telefone idcomunidade microarea" 
+						                  update="msgCadastroFunc matricula nome perfil ativo senha telefone idcomunidade microarea"  />									
+						
+						<p:commandButton  id="btnLimpar" icon="fa fa-eraser" value="Limpar"  ajax="true" process="@this" 
+						                  update="CadastroFunc msgCadastroFunc" />						                  
+						
+					</div>           			
+	<br/>
+	<!-- TABELA COM OS FUNCIONARIOS -->
+	<p:dataTable class="labels" var="usuario" value="#">
+	
+       <p:column headerText="Nome">
+          <h:outputText value="#" />
+       </p:column>
+       
+       <p:column headerText="Telefone">
+          <h:outputText value="#" />
+       </p:column>
+       
+       <p:column headerText="Matrícula">
+          <h:outputText value="#" />
+       </p:column>
+       
+       <p:column headerText="Micro Area">
+          <h:outputText value="#" />
+       </p:column>
+   
+       <p:column headerText="Senha">
+          <h:outputText value="#" />
+       </p:column>
+   
+       <p:column headerText="Perfil">
+          <h:outputText value="#" />
+       </p:column>
+       
+       <p:column headerText="Id_Comunidade">
+          <h:outputText value="#" />
+       </p:column>
+       
+       <p:column headerText="Ativo">
+          <h:outputText value="#" />
+       </p:column>           
+                  
+       <p:column headerText="Data de Cadastro">
+          <h:outputText value="#" />
+       </p:column>               
+    
+    </p:dataTable>
+		
 		</h:form>
-		
+	</f:view>	
 	</ui:define>
 	
 </ui:composition>
