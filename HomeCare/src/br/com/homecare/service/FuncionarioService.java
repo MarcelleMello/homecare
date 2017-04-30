@@ -2,9 +2,11 @@ package br.com.homecare.service;
 
 import java.io.Serializable;
 import java.sql.Connection;
+
 import br.com.homecare.dao.DBUtil;
 import br.com.homecare.dao.FuncionarioDAO;
 import br.com.homecare.model.Funcionario;
+import br.com.homecare.util.Util;
 
 public class FuncionarioService implements Serializable {
 
@@ -24,6 +26,31 @@ public class FuncionarioService implements Serializable {
 			DBUtil.closeConnection(con);
 		}
 		return f;
+	}
+
+	public void cadastrar(Funcionario f) throws ServiceException, Exception {
+		FuncionarioDAO dao = new FuncionarioDAO();
+		Connection con = DBUtil.getConnection();
+		try {
+			DBUtil.beginTransaction(con);
+			f.setSenha(Util.md5(f.getSenha()));
+			
+			//se for true quer dizer que foi encontrado um usuário com a mesma matrícula
+			if(dao.obterPorMatricula(f.getCodigo(), con)) {
+				throw new ServiceException("Matrícula existente");
+			}
+			
+			dao.cadastrar(f,con);
+			DBUtil.commit(con);
+		} catch (ServiceException e) {
+			DBUtil.rollback(con);
+			throw new ServiceException(e.getMessage());
+		} catch (Exception e) {
+			DBUtil.rollback(con);
+			throw new Exception(e);
+		} finally {
+			DBUtil.closeConnection(con);
+		}
 	}
 	
 }

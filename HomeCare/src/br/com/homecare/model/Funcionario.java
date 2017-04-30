@@ -22,7 +22,7 @@ public class Funcionario implements Serializable{
 	private Perfil perfil;
 	
 	public Funcionario() {
-		// TODO Auto-generated constructor stub
+		
 	}
 	
 	public Funcionario(Integer id) {
@@ -45,7 +45,11 @@ public class Funcionario implements Serializable{
 		return nome;
 	}
 	public void setNome(String nome) {
-		this.nome = nome;
+		if(nome != null && !"".equals(nome)) {
+			this.nome = nome.toUpperCase();
+		} else{
+			this.nome = nome;
+		}
 	}
 	public String getTelefone() {
 		return telefone;
@@ -91,7 +95,7 @@ public class Funcionario implements Serializable{
 	public void setPerfil(Perfil perfil) {
 		this.perfil = perfil;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
