@@ -9,114 +9,63 @@
 	
 	<ui:define name="content">
 	
-<f:view>
 		<h:form id="form"  >
-
-		
-		<p:messages id="msgCadastroFunc" globalOnly="false" closable="true"/>		
-		
-		<div id="cadastroLabel" align="center">
-			 <h1>Cadastro de Funcionários</h1>
-		</div> 
-		 
-	<br/>
-	<!-- CADASTRO DOS FUNCIONARIOS -->
-					<div class="labels" align="center">				
-					<h:panelGrid  id="CadastroFunc" columns="4" cellpadding="5" cellspacing="5">						
-						
-						<h:outputText value="Nome: "/> 			
-							<p:inputText id="nome" required="#{param['form:btnCadastrar'] ne null}"  
-							requiredMessage="O campo Nome deve ser preenchido.  " size="22" maxlength="60" />
-											   
-						<h:outputText value="Telefone: "/> 			
-							<p:inputText id="telefone"  required="#{param['form:btnCadastrar'] ne null}" 
-							requiredMessage="O campo Telefone deve ser preenchido.  " size="18" maxlength="60" />							
-						 
-						<h:outputText value="Matrícula: "/> 			
-							<p:inputText id="matricula"  required="#{param['form:btnCadastrar'] ne null}"  
-							requiredMessage="O campo Matrícula deve ser preenchido.  " size="18" maxlength="60" />						 
-						   
-						<h:outputText value="Micro Area: "/> 			
-							<p:inputText id="microarea"  required="#{param['form:btnCadastrar'] ne null}" 
-							requiredMessage="O campo Micro Area deve ser preenchido. " size="18" maxlength="60" />							   
-						   
-						<h:outputText value="Senha: "/> 			
-							<p:inputText id="senha"  required="#{param['form:btnCadastrar'] ne null}" 
-							requiredMessage="O campo Senha deve ser preenchido.  " size="18" maxlength="60" />
-							   						
-						<h:outputText value="Perfil:" styleClass="nomeCampo" />
-							<p:selectOneMenu id="perfil" required="#{param['form:btnCadastrar'] ne null}"  
-							requiredMessage="O campo Perfil deve ser preenchido.  " size="30" maxlength="60">
-						          <f:selectItem itemLabel="Selecione" itemValue="" />	
-						    </p:selectOneMenu>							        
-									
-						<h:outputText value="Id_Comunidade: "/> 			
-							<p:inputText id="idcomunidade"  required="#{param['form:btnCadastrar'] ne null}" 
-							requiredMessage="O campo Id_comunidade deve ser preenchido.  " size="18" maxlength="60">
-							</p:inputText>									
-						   
-						<h:outputText value="Ativo:" styleClass="nomeCampo" />						
-							<p:selectOneRadio id="ativo" >													
-						            <f:selectItem itemLabel="Ativo" itemValue="Ativo" /> 					           
-						            <f:selectItem itemLabel="Inativo"  itemValue="Inativo" />					        
-					        </p:selectOneRadio>						
-						
-					</h:panelGrid>
-					</div>
-					<div class="btns" align="center">
-					
-						<p:commandButton  id="btnCadastrar" icon="fa fa-check" value="Cadastrar" style="margin:10px 10px 10px 10px;" 
-						                  process="@this matricula nome perfil ativo senha telefone idcomunidade microarea" 
-						                  update="msgCadastroFunc matricula nome perfil ativo senha telefone idcomunidade microarea"  />									
-						
-						<p:commandButton  id="btnLimpar" icon="fa fa-eraser" value="Limpar"  ajax="true" process="@this" 
-						                  update="CadastroFunc msgCadastroFunc" />						                  
-						
-					</div>           			
-	<br/>
-	<!-- TABELA COM OS FUNCIONARIOS -->
-	<p:dataTable class="labels" var="usuario" value="#">
 	
-       <p:column headerText="Nome">
-          <h:outputText value="#" />
-       </p:column>
-       
-       <p:column headerText="Telefone">
-          <h:outputText value="#" />
-       </p:column>
-       
-       <p:column headerText="Matrícula">
-          <h:outputText value="#" />
-       </p:column>
-       
-       <p:column headerText="Micro Area">
-          <h:outputText value="#" />
-       </p:column>
-   
-       <p:column headerText="Senha">
-          <h:outputText value="#" />
-       </p:column>
-   
-       <p:column headerText="Perfil">
-          <h:outputText value="#" />
-       </p:column>
-       
-       <p:column headerText="Id_Comunidade">
-          <h:outputText value="#" />
-       </p:column>
-       
-       <p:column headerText="Ativo">
-          <h:outputText value="#" />
-       </p:column>           
-                  
-       <p:column headerText="Data de Cadastro">
-          <h:outputText value="#" />
-       </p:column>               
-    
-    </p:dataTable>
-		
+		<p:messages id="messages"  autoUpdate="true" closable="true" />
+				
+		<div class="ui-fluid" >
+			<p:tabView style="margin-top: 20px" id="container">
+				<p:tab title="Dados básicos">
+					
+					<p:panelGrid columns="4" layout="grid"
+								columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-2, ui-grid-col-4"
+								styleClass="panelgrid-noborder">
+				
+							<p:outputLabel value="Nome: "/> 			
+							<p:inputText id="nome" value="#{cadastrarFuncionarioBean.funcionario.nome}" required="true" requiredMessage="O campo Nome deve ser preenchido."    size="22" maxlength="60" />
+															   
+							<p:outputLabel value="Telefone: "/> 			
+							<p:inputMask id="telefone" value="#{cadastrarFuncionarioBean.funcionario.telefone}" mask="(99)9999-9999?9"   required="true" requiredMessage="O campo Telefone deve ser preenchido."   size="18" maxlength="60"  />							
+										 
+							<p:outputLabel value="Matrícula: "/> 			
+							<p:inputMask id="matricula" value="#{cadastrarFuncionarioBean.funcionario.codigo}" mask="99?99999" required="true" requiredMessage="O campo Matrícula deve ser preenchido."  size="18" maxlength="60" />						 
+										   
+							<p:outputLabel value="Micro Area: "/> 			
+							<p:inputText id="microarea" value="#{cadastrarFuncionarioBean.funcionario.microArea}" required="true" requiredMessage="O campo Micro Area deve ser preenchido."   size="18" maxlength="60" />							   
+										   
+							<p:outputLabel value="Senha: "/> 			
+							<p:inputText id="senha" value="#{cadastrarFuncionarioBean.funcionario.senha}" required="true" requiredMessage="O campo Senha deve ser preenchido."  size="18" maxlength="60" />
+											   						
+							<p:outputLabel value="Perfil:" styleClass="nomeCampo" />
+							<p:selectOneMenu id="perfil" required="true" requiredMessage="O campo Perfil deve ser preenchido.  " size="30" maxlength="60" value="#{cadastrarFuncionarioBean.funcionario.perfil}">
+								<f:selectItems value="#{cadastrarFuncionarioBean.perfis}" />	
+							</p:selectOneMenu>							        
+													
+							<p:outputLabel value="Codigo comunidade: "/> 			
+							<p:selectOneMenu id="comunidades" required="true" requiredMessage="O campo Perfil deve ser preenchido.  " size="30" maxlength="60" value="#{cadastrarFuncionarioBean.funcionario.comunidade}" converter="comunidadeConverter">
+								<f:selectItems value="#{cadastrarFuncionarioBean.comunidades}" />	
+							</p:selectOneMenu>
+																		   
+							<p:outputLabel value="Ativo:" styleClass="nomeCampo" />						
+							<p:selectOneMenu id="ativo" required="true" requiredMessage="O campo Perfil deve ser preenchido.  " size="30" maxlength="60" value="#{cadastrarFuncionarioBean.funcionario.ativo}">
+								<f:selectItems value="#{cadastrarFuncionarioBean.simNao}" />	
+							</p:selectOneMenu>		
+							
+					</p:panelGrid>					
+	
+				</p:tab>
+				
+				
+			</p:tabView>
+			
+			<div class="btnAcao">
+				<p:commandButton  id="btnCadastrar" ajax="true"  actionListener="#{cadastrarFuncionarioBean.cadastrar}"  icon="fa fa-check" value="Cadastrar" process="@form" update="@form"  />									
+			</div>
+		</div>
+				
+	
 		</h:form>
-	</f:view>	
+	
 	</ui:define>
 	
 </ui:composition>

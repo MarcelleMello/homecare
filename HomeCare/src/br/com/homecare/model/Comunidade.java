@@ -10,6 +10,12 @@ public class Comunidade implements Serializable{
 	private String nome;
 	private String codigo;
 	
+	private Unidade unidade;
+	
+	public Comunidade() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public Comunidade(Integer id) {
 		this.id = id;
 	}
@@ -31,6 +37,15 @@ public class Comunidade implements Serializable{
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
+	
+	public Unidade getUnidade() {
+		return unidade;
+	}
+
+	public void setUnidade(Unidade unidade) {
+		this.unidade = unidade;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

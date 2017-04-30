@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 
 import br.com.homecare.model.Comunidade;
@@ -54,6 +55,39 @@ public class FuncionarioDAO implements Serializable{
 		stmt.close();
 			      	
 		return f;
+	}
+
+	public int cadastrar(Funcionario f, Connection con) throws SQLException {
+		
+		String sql = " INSERT INTO TBL_FUNCIONARIO(NOME, TELEFONE, SENHA, DATA_CADASTRO, "
+				+ " MICRO_AREA, ATIVO, ID_COMUNIDADE, PERFIL, COD_FUNCIONARIO) "
+				+ " VALUES (?, ?, ?, SYSDATE(), ?, ?, ?, ?, ?) ";
+        
+	    Integer indice = 0;
+	        
+	    PreparedStatement stmt = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+
+	    stmt.setString(++indice, f.getNome());
+	    stmt.setString(++indice, f.getTelefone());
+	    stmt.setString(++indice, f.getSenha());
+	    
+	    stmt.setString(++indice, f.getMicroArea());
+	    stmt.setInt(++indice, f.getAtivo().getValor());
+	    stmt.setInt(++indice, f.getComunidade().getId());
+	    stmt.setInt(++indice, f.getPerfil().getValor());
+	    stmt.setString(++indice, f.getCodigo());
+	    
+	    stmt.executeUpdate();
+	    
+	    ResultSet rs = stmt.getGeneratedKeys();  
+        rs.next();  
+        int id = rs.getInt(1);  
+        
+	    stmt.close();
+	    rs.close();
+	    
+	    return id;
+		
 	}
 	
 }
