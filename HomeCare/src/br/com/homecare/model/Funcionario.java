@@ -45,7 +45,11 @@ public class Funcionario implements Serializable{
 		return nome;
 	}
 	public void setNome(String nome) {
-		this.nome = nome;
+		if(nome != null && !"".equals(nome)) {
+			this.nome = nome.toUpperCase();
+		} else{
+			this.nome = nome;
+		}
 	}
 	public String getTelefone() {
 		return telefone;
