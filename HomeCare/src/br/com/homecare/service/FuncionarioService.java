@@ -28,14 +28,23 @@ public class FuncionarioService implements Serializable {
 		return f;
 	}
 
-	public void cadastrar(Funcionario f) throws Exception {
+	public void cadastrar(Funcionario f) throws ServiceException, Exception {
 		FuncionarioDAO dao = new FuncionarioDAO();
 		Connection con = DBUtil.getConnection();
 		try {
 			DBUtil.beginTransaction(con);
 			f.setSenha(Util.md5(f.getSenha()));
+			
+			//se for true quer dizer que foi encontrado um usuário com a mesma matrícula
+			if(dao.obterPorMatricula(f.getCodigo(), con)) {
+				throw new ServiceException("Matrícula existente");
+			}
+			
 			dao.cadastrar(f,con);
 			DBUtil.commit(con);
+		} catch (ServiceException e) {
+			DBUtil.rollback(con);
+			throw new ServiceException(e.getMessage());
 		} catch (Exception e) {
 			DBUtil.rollback(con);
 			throw new Exception(e);
