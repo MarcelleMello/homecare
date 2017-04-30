@@ -7,7 +7,7 @@ import javax.faces.convert.FacesConverter;
 import br.com.homecare.model.Comunidade;
 
 @FacesConverter("comunidadeConverter")
-public class ProjetoConverter implements Converter {
+public class ComunidadeConverter implements Converter {
 
 	@Override
 	public Object getAsObject(FacesContext ctx, UIComponent component, String value) {

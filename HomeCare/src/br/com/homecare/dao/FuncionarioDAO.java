@@ -89,5 +89,25 @@ public class FuncionarioDAO implements Serializable{
 	    return id;
 		
 	}
+
+	
+	public boolean obterPorMatricula(String matricula, Connection con) throws SQLException {
+		
+		String sql = "SELECT COUNT(*) AS TOTAL FROM TBL_FUNCIONARIO WHERE COD_FUNCIONARIO = ?";
+				
+		PreparedStatement stmt = con.prepareStatement(sql);
+		stmt.setString(1, matricula);
+					
+		ResultSet rs = stmt.executeQuery();
+				
+		if (rs.next()) {
+		   return rs.getInt("TOTAL") > 0;
+		} 
+		
+		rs.close();
+		stmt.close();
+ 	
+		return false;
+	}
 	
 }

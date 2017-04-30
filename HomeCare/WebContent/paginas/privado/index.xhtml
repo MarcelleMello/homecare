@@ -34,7 +34,7 @@
 							<p:inputText id="microarea" value="#{cadastrarFuncionarioBean.funcionario.microArea}" required="true" requiredMessage="O campo Micro Area deve ser preenchido."   size="18" maxlength="60" />							   
 										   
 							<p:outputLabel value="Senha: "/> 			
-							<p:inputText id="senha" value="#{cadastrarFuncionarioBean.funcionario.senha}" required="true" requiredMessage="O campo Senha deve ser preenchido."  size="18" maxlength="60" />
+							<p:password id="senha" value="#{cadastrarFuncionarioBean.funcionario.senha}" required="true" requiredMessage="O campo Senha deve ser preenchido."  size="18" maxlength="60" />
 											   						
 							<p:outputLabel value="Perfil:" styleClass="nomeCampo" />
 							<p:selectOneMenu id="perfil" required="true" requiredMessage="O campo Perfil deve ser preenchido.  " size="30" maxlength="60" value="#{cadastrarFuncionarioBean.funcionario.perfil}">
