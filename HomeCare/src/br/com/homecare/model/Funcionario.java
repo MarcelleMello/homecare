@@ -22,7 +22,7 @@ public class Funcionario implements Serializable{
 	private Perfil perfil;
 	
 	public Funcionario() {
-		// TODO Auto-generated constructor stub
+		
 	}
 	
 	public Funcionario(Integer id) {
@@ -91,7 +91,7 @@ public class Funcionario implements Serializable{
 	public void setPerfil(Perfil perfil) {
 		this.perfil = perfil;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
