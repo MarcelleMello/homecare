@@ -99,57 +99,59 @@
 				<p:selectOneMenu id="TipoBusca" value="#" required="#{param['form:buscar'] ne null}" 
 				requiredMessage="Informe um tipo de pesquisa.">
 		            <f:selectItem itemLabel="Selecione" itemValue="" />
-		            <f:selectItems value="#" />
+		            <f:selectItems value="#{consultarFuncionarioBean.funcionarios}" />
 		        </p:selectOneMenu>      			
 		    
 		  	<p:inputText id="buscar" size="40" placeholder="Buscar" />
-		   	<p:commandButton value="Pesquisar"  update="@form"/>
+		   	<p:commandButton value="Pesquisar" icon="fa fa-search" id="bt_pesquisarFiltro" update="@this containerFuncionarios" ajax="true" 
+		   	actionListener="#{consultarFuncionarioBean.consultar}" process="@this TipoBusca"/>
+		   			   	 		   	
 		  </h:panelGrid>
 		  </div>         			
 		           			
 	<br/>
 	<!-- TABELA COM OS FUNCIONARIOS -->
-	<p:dataTable class="label" var="funcionarios" value="#" emptyMessage="Nenhum funcionário encontrado." 
-				 rows="10" paginator="true" paginatorPosition="bottom">
+	<h:panelGroup id="containerFuncionarios">
+	<p:dataTable id="funcionarios" class="label" value="#{consultarFuncionarioBean.funcionarios}" var="f" 
+	emptyMessage="Nenhum funcionário encontrado." rows="10" paginator="true" paginatorPosition="bottom">
 	
-       <p:column headerText="Nome">
-          <h:outputText value="#" />
+       <p:column headerText="Nome" sortBy="#{u.nome}" >
+          <h:outputText value="#{u.nome}" />
        </p:column>
        
-       <p:column headerText="Telefone">
-          <h:outputText value="#" />
+       <p:column headerText="Telefone" sortBy="#{u.telefone}">
+          <h:outputText value="#{u.telefone}" />
        </p:column>
        
-       <p:column headerText="Matrícula">
-          <h:outputText value="#" />
+       <p:column headerText="Matrícula" sortBy="#{u.codigo}">
+          <h:outputText value="#{u.codigo}" />
        </p:column>
        
-       <p:column headerText="Micro Area">
-          <h:outputText value="#" />
+       <p:column headerText="Micro Area" sortBy="#{u.microArea}">
+          <h:outputText value="#{u.microArea}" />
        </p:column>
    
-       <p:column headerText="Senha">
-          <h:outputText value="#" />
-       </p:column>
-   
-       <p:column headerText="Perfil">
-          <h:outputText value="#" />
+       <p:column headerText="Perfil" sortBy="#{u.perfil}">
+          <h:outputText value="#{u.perfil}" />
        </p:column>
        
-       <p:column headerText="Id_Comunidade">
-          <h:outputText value="#" />
+       <p:column headerText="Id_Comunidade" sortBy="#{u.comunidade}">
+          <h:outputText value="#{u.comunidade}" />
        </p:column>
        
-       <p:column headerText="Ativo">
-          <h:outputText value="#" />
-       </p:column>           
-                  
-       <p:column headerText="Data de Cadastro">
-          <h:outputText value="#" />
-       </p:column>  
+       <p:column headerText="Ativo" sortBy="#{u.ativo}">
+          <h:outputText value="#{u.ativo}" />
+       </p:column> 
        
+        <p:column headerText="Data de Cadastro" sortBy="#{u.dataCadastro}">
+          <h:outputText value="#{u.dataCadastro}" />
+       </p:column>     
+     
        <p:column headerText="Editar">
-         <center> <p:commandButton icon="fa fa-pencil-square-o" style="width: 50px; font-size: 16px; text-align: center"/> </center>
+		 <center> 
+		 <p:commandButton icon="fa fa-pencil-square-o" action="#{consultarFuncionarioBean.selecionar(funcionario)}" 
+		 process="@this" style="width: 50px; font-size: 16px; text-align: center"/> 
+		 </center>
        </p:column>               
     
     </p:dataTable>
