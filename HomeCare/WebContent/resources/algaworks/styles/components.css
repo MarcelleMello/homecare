@@ -54,13 +54,14 @@
 	color: #373737;
 }
 
-#cadastroLabel, #consultaLabel {
-	font-size: 28px;
-	
+.titulo {
+	font-size: 18px;
+	text-align: center;
 }
 
-.labels {
-	font-size: 20px;
+.label{
+	
+	font-size: 12px;
 }
 
 .btns {

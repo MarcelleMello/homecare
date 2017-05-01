@@ -87,19 +87,29 @@
 		
 		<p:messages id="msgConsultarFunc" globalOnly="false" closable="true"/>		
 		
-		<div id="consultaLabel" align="center">
+		<div class="titulo">
 			 <h1>Consulta de Funcionários</h1>
 		</div> 
-		           			
-		  <div id="buscar" align="center">
-		  	<p:inputText id="" size="40" placeholder="Buscar" />
-		  		<p:spacer widht="10"/>
-		  	<p:commandButton value="Pesquisar"  update="@form"/>
+		  
+		  <br/>  
+		  <div id="buscar" align="center">  
+		  <h:panelGrid columns="4" cellpadding="5" cellspacing="5">
+		   
+		  <h:outputText value="Buscar por: "/>
+				<p:selectOneMenu id="TipoBusca" value="#" required="#{param['form:buscar'] ne null}" 
+				requiredMessage="Informe um tipo de pesquisa.">
+		            <f:selectItem itemLabel="Selecione" itemValue="" />
+		            <f:selectItems value="#" />
+		        </p:selectOneMenu>      			
+		    
+		  	<p:inputText id="buscar" size="40" placeholder="Buscar" />
+		   	<p:commandButton value="Pesquisar"  update="@form"/>
+		  </h:panelGrid>
 		  </div>         			
 		           			
 	<br/>
 	<!-- TABELA COM OS FUNCIONARIOS -->
-	<p:dataTable class="labels" var="funcionarios" value="#" emptyMessage="Nenhum funcionário encontrado." 
+	<p:dataTable class="label" var="funcionarios" value="#" emptyMessage="Nenhum funcionário encontrado." 
 				 rows="10" paginator="true" paginatorPosition="bottom">
 	
        <p:column headerText="Nome">
@@ -136,11 +146,15 @@
                   
        <p:column headerText="Data de Cadastro">
           <h:outputText value="#" />
+       </p:column>  
+       
+       <p:column headerText="Editar">
+         <center> <p:commandButton icon="fa fa-pencil-square-o" style="width: 50px; font-size: 16px; text-align: center"/> </center>
        </p:column>               
     
     </p:dataTable>
 		
-		</h:form>
+	</h:form>
 	</f:view>	
 	</ui:define>
 	
