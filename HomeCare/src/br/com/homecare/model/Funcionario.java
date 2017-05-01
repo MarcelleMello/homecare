@@ -11,6 +11,7 @@ public class Funcionario implements Serializable{
 	private static final long serialVersionUID = 4526393390225489822L;
 	
 	private Integer id;
+	//codigo = matricula
 	private String codigo;
 	private String nome;
 	private String telefone;

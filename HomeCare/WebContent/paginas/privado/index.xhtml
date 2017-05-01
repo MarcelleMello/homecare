@@ -22,32 +22,40 @@
 								styleClass="panelgrid-noborder">
 				
 							<p:outputLabel value="Nome: "/> 			
-							<p:inputText id="nome" value="#{cadastrarFuncionarioBean.funcionario.nome}" required="true" requiredMessage="O campo Nome deve ser preenchido."    size="22" maxlength="60" />
+							<p:inputText id="nome" value="#{cadastrarFuncionarioBean.funcionario.nome}" required="true" 
+							requiredMessage="O campo Nome deve ser preenchido."    size="22" maxlength="60" />
 															   
 							<p:outputLabel value="Telefone: "/> 			
-							<p:inputMask id="telefone" value="#{cadastrarFuncionarioBean.funcionario.telefone}" mask="(99)9999-9999?9"   required="true" requiredMessage="O campo Telefone deve ser preenchido."   size="18" maxlength="60"  />							
+							<p:inputMask id="telefone" value="#{cadastrarFuncionarioBean.funcionario.telefone}" mask="(99)9999-9999?9"   
+							required="true" requiredMessage="O campo Telefone deve ser preenchido."   size="18" maxlength="60"  />							
 										 
 							<p:outputLabel value="Matrícula: "/> 			
-							<p:inputMask id="matricula" value="#{cadastrarFuncionarioBean.funcionario.codigo}" mask="99?99999" required="true" requiredMessage="O campo Matrícula deve ser preenchido."  size="18" maxlength="60" />						 
+							<p:inputMask id="matricula" value="#{cadastrarFuncionarioBean.funcionario.codigo}" mask="99?99999" 
+							required="true" requiredMessage="O campo Matrícula deve ser preenchido."  size="18" maxlength="60" />						 
 										   
 							<p:outputLabel value="Micro Area: "/> 			
-							<p:inputText id="microarea" value="#{cadastrarFuncionarioBean.funcionario.microArea}" required="true" requiredMessage="O campo Micro Area deve ser preenchido."   size="18" maxlength="60" />							   
+							<p:inputText id="microarea" value="#{cadastrarFuncionarioBean.funcionario.microArea}" required="true" 
+							requiredMessage="O campo Micro Area deve ser preenchido."   size="18" maxlength="60" />							   
 										   
 							<p:outputLabel value="Senha: "/> 			
-							<p:password id="senha" value="#{cadastrarFuncionarioBean.funcionario.senha}" required="true" requiredMessage="O campo Senha deve ser preenchido."  size="18" maxlength="60" />
+							<p:password id="senha" value="#{cadastrarFuncionarioBean.funcionario.senha}" required="true" 
+							requiredMessage="O campo Senha deve ser preenchido."  size="18" maxlength="60" />
 											   						
 							<p:outputLabel value="Perfil:" styleClass="nomeCampo" />
-							<p:selectOneMenu id="perfil" required="true" requiredMessage="O campo Perfil deve ser preenchido.  " size="30" maxlength="60" value="#{cadastrarFuncionarioBean.funcionario.perfil}">
-								<f:selectItems value="#{cadastrarFuncionarioBean.perfis}" />	
+							<p:selectOneMenu id="perfil" required="true" requiredMessage="O campo Perfil deve ser preenchido.  " size="30" 
+							maxlength="60" value="#{cadastrarFuncionarioBean.funcionario.perfil}">
+							<f:selectItems value="#{cadastrarFuncionarioBean.perfis}" />	
 							</p:selectOneMenu>							        
 													
 							<p:outputLabel value="Codigo comunidade: "/> 			
-							<p:selectOneMenu id="comunidades" required="true" requiredMessage="O campo Perfil deve ser preenchido.  " size="30" maxlength="60" value="#{cadastrarFuncionarioBean.funcionario.comunidade}" converter="comunidadeConverter">
+							<p:selectOneMenu id="comunidades" required="true" requiredMessage="O campo Perfil deve ser preenchido.  " 
+							size="30" maxlength="60" value="#{cadastrarFuncionarioBean.funcionario.comunidade}" converter="comunidadeConverter">
 								<f:selectItems value="#{cadastrarFuncionarioBean.comunidades}" />	
 							</p:selectOneMenu>
 																		   
 							<p:outputLabel value="Ativo:" styleClass="nomeCampo" />						
-							<p:selectOneMenu id="ativo" required="true" requiredMessage="O campo Perfil deve ser preenchido.  " size="30" maxlength="60" value="#{cadastrarFuncionarioBean.funcionario.ativo}">
+							<p:selectOneMenu id="ativo" required="true" requiredMessage="O campo Perfil deve ser preenchido.  " 
+							size="30" maxlength="60" value="#{cadastrarFuncionarioBean.funcionario.ativo}">
 								<f:selectItems value="#{cadastrarFuncionarioBean.simNao}" />	
 							</p:selectOneMenu>		
 							
