@@ -111,8 +111,20 @@
 		           			
 	<br/>
 	
+	
+	
+	
 	<p:dataTable id="funcionarios" class="label" value="#{consultarFuncionarioBean.funcionarios}" var="f" 
 	emptyMessage="Nenhum funcionário encontrado." rows="10" paginator="true" paginatorPosition="bottom" >
+	
+	
+	
+	<p:panel header="#{f.nome}" style="text-align:center">
+            <h:panelGrid columns="1" style="width:100%">
+                <h:o
+            </h:panelGrid>
+        </p:panel>
+	
 	
        <p:column headerText="Nome" sortBy="#{f.nome}" >
           <h:outputText value="#{f.nome}" />
