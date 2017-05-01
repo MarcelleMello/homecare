@@ -9,6 +9,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.model.SelectItem;
+
 import br.com.homecare.model.Comunidade;
 import br.com.homecare.model.Funcionario;
 import br.com.homecare.model.tipo.Perfil;

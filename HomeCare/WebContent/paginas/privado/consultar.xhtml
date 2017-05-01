@@ -5,7 +5,79 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">	
 	
-	<h:head></h:head>
+	<h:head>
+		<f:facet name="first">
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+	</f:facet>
+
+	<title>HomeCare-Consulta</title>
+
+	<h:outputStylesheet library="algaworks" name="styles/custom.css" />
+	<h:outputStylesheet library="algaworks" name="styles/layout.css" />
+	<h:outputStylesheet library="algaworks" name="styles/components.css" />
+	
+	<h:outputScript target="body" library="primefaces" name="jquery/jquery.js" />
+	<h:outputScript target="body" library="algaworks" name="javascripts/app.js" />
+	
+	<h:outputStylesheet library="bootstrap-3.3.7-dist" name="css/bootstrap.min.css" />
+	
+		<style>
+			.wrapper 
+			{	
+			  margin-top: 80px;
+			}
+
+			.form-signin 
+			{
+			  max-width: 360px;
+			  max-height: 650px;
+			  padding: 15px 35px 45px;
+			  margin: 0 auto;
+			  background-color: #fff;
+			  border: 1px solid rgba(0,0,0,0.1); 
+			  border-radius:7px; 
+			}
+			
+			.form-control 
+			 {
+			  position: relative;
+			  font-size: 16px;
+			  height: auto;
+			  padding: 10px;
+			 }
+			 
+			.aw-layout-footer 
+			{
+			  position: absolute;
+			  left: 0;
+			  right: 0;
+			  bottom: 0;
+			  height: 50px;
+			  margin: 0;
+			  border-top: 1px solid #eeeeee;
+			  transition: all 0.5s;
+			}
+			
+			@media (min-width: 992px) 
+			{
+			  .aw-layout-footer.is-toggled 
+			  {
+			    margin-left: 0;
+			  }
+			}
+			
+			@media (min-width: 992px) 
+			{
+			  .aw-layout-footer 
+			  {
+			    margin-left: 0px;
+			  }
+			}
+	
+	</style>
+		
+	</h:head>
 	
 	<ui:define name="content">
 	
@@ -15,53 +87,75 @@
 		
 		<p:messages id="msgConsultarFunc" globalOnly="false" closable="true"/>		
 		
-		<div id="consultaLabel" align="center">
+		<div class="titulo">
 			 <h1>Consulta de Funcionários</h1>
 		</div> 
+		  
+		  <br/>  
+		  <div id="buscar" align="center">  
+		  <h:panelGrid columns="4" cellpadding="5" cellspacing="5">
+		   
+		  <h:outputText value="Buscar por: "/>
+				<p:selectOneMenu id="TipoBusca" value="#" required="#{param['form:buscar'] ne null}" 
+				requiredMessage="Informe um tipo de pesquisa.">
+		            <f:selectItem itemLabel="Selecione" itemValue="" />
+		            <f:selectItems value="#{consultarFuncionarioBean.funcionarios}" />
+		        </p:selectOneMenu>      			
+		    
+		  	<p:inputText id="buscar" size="40" placeholder="Buscar" />
+		   	<p:commandButton value="Pesquisar" icon="fa fa-search" id="bt_pesquisarFiltro" update="@this" ajax="true" 
+		   	actionListener="#{consultarFuncionarioBean.consultar}" process="@this TipoBusca"/>
+		   			   	 		   	
+		  </h:panelGrid>
+		  </div>         			
 		           			
 	<br/>
-	<!-- TABELA COM OS FUNCIONARIOS -->
-	<p:dataTable class="labels" var="usuario" value="#">
 	
-       <p:column headerText="Nome">
-          <h:outputText value="#" />
+	<p:dataTable id="funcionarios" class="label" value="#{consultarFuncionarioBean.funcionarios}" var="f" 
+	emptyMessage="Nenhum funcionário encontrado." rows="10" paginator="true" paginatorPosition="bottom" >
+	
+       <p:column headerText="Nome" sortBy="#{f.nome}" >
+          <h:outputText value="#{f.nome}" />
        </p:column>
        
-       <p:column headerText="Telefone">
-          <h:outputText value="#" />
+       <p:column headerText="Telefone" sortBy="#{f.telefone}">
+          <h:outputText value="#{f.telefone}" />
        </p:column>
        
-       <p:column headerText="Matrícula">
-          <h:outputText value="#" />
+       <p:column headerText="Matrícula" sortBy="#{f.codigo}">
+          <h:outputText value="#{f.codigo}" />
        </p:column>
        
-       <p:column headerText="Micro Area">
-          <h:outputText value="#" />
+       <p:column headerText="Micro Area" sortBy="#{f.microArea}">
+          <h:outputText value="#{f.microArea}" />
        </p:column>
    
-       <p:column headerText="Senha">
-          <h:outputText value="#" />
-       </p:column>
-   
-       <p:column headerText="Perfil">
-          <h:outputText value="#" />
+       <p:column headerText="Perfil" sortBy="#{f.perfil}">
+          <h:outputText value="#{f.perfil}" />
        </p:column>
        
-       <p:column headerText="Id_Comunidade">
-          <h:outputText value="#" />
+       <p:column headerText="Id_Comunidade" sortBy="#{f.comunidade}">
+          <h:outputText value="#{f.comunidade}" />
        </p:column>
        
-       <p:column headerText="Ativo">
-          <h:outputText value="#" />
-       </p:column>           
-                  
-       <p:column headerText="Data de Cadastro">
-          <h:outputText value="#" />
+       <p:column headerText="Ativo" sortBy="#{f.ativo}">
+          <h:outputText value="#{f.ativo}" />
+       </p:column> 
+       
+        <p:column headerText="Data de Cadastro" sortBy="#{f.dataCadastro}">
+          <h:outputText value="#{f.dataCadastro}" />
+       </p:column>     
+     
+       <p:column headerText="Editar">
+		 <center> 
+		 <p:commandButton icon="fa fa-pencil-square-o" action="#{consultarFuncionarioBean.selecionar(funcionario)}" 
+		 process="@this" style="width: 50px; font-size: 16px; text-align: center"/> 
+		 </center>
        </p:column>               
     
     </p:dataTable>
 		
-		</h:form>
+	</h:form>
 	</f:view>	
 	</ui:define>
 	

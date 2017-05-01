@@ -2,11 +2,13 @@ package br.com.homecare.service;
 
 import java.io.Serializable;
 import java.sql.Connection;
+import java.util.List;
 
 import br.com.homecare.dao.DBUtil;
 import br.com.homecare.dao.FuncionarioDAO;
 import br.com.homecare.model.Funcionario;
 import br.com.homecare.util.Util;
+
 
 public class FuncionarioService implements Serializable {
 
@@ -53,4 +55,21 @@ public class FuncionarioService implements Serializable {
 		}
 	}
 	
-}
+	public List<Funcionario> consultar(Funcionario funcionarioFiltrado, Funcionario usuarioSessao) throws ServiceException, Exception {		 
+		Connection con = DBUtil.getConnection();
+		List<Funcionario> funcionarios = null;
+		try {
+			
+			funcionarios = FuncionarioDAO.consultar(funcionarioFiltrado, usuarioSessao, con);
+		
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.closeConnection(con);
+		}
+		return funcionarios;
+	}
+	
+
+	
+	}

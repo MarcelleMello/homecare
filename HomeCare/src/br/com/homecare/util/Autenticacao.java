@@ -87,4 +87,12 @@ public class Autenticacao implements PhaseListener {
 	
 		}
 	}
+
+	public static List<String> getPrimeiroAcesso() {
+		return primeiroAcesso;
+	}
+
+	public static void setPrimeiroAcesso(List<String> primeiroAcesso) {
+		Autenticacao.primeiroAcesso = primeiroAcesso;
+	}
 }
