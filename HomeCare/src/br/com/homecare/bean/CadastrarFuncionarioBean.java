@@ -9,9 +9,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.model.SelectItem;
-
-import com.mysql.fabric.xmlrpc.base.Array;
-
 import br.com.homecare.model.Comunidade;
 import br.com.homecare.model.Funcionario;
 import br.com.homecare.model.tipo.Perfil;
