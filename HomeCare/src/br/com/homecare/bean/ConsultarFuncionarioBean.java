@@ -17,13 +17,13 @@ import br.com.homecare.service.FuncionarioService;
 
 
 @ViewScoped
-@ManagedBean(name="consultarFuncionario")
+@ManagedBean(name="consultarFuncionarioBean")
 public class ConsultarFuncionarioBean extends AbstractBean implements Serializable{
 
 	private static final long serialVersionUID = 6712522758268465657L;
 	
 	private String item;
-	private Funcionario funcionarioFiltrado;
+	private Funcionario funcionarioFiltro;
 	private Funcionario funcionario;
 	private List<Funcionario> funcionarios;	
 	private List<SelectItem> itens;
@@ -33,14 +33,18 @@ public class ConsultarFuncionarioBean extends AbstractBean implements Serializab
 	
 	@PostConstruct
 	public void init() {
-		itens = new ArrayList<SelectItem>();			
+		itens = new ArrayList<SelectItem>();	
+		
+		funcionarioFiltro = new Funcionario(); 
+		
+		consultar();
 	}
 		
 	
 public void consultar() {
 	try {
 			
-		funcionarios = new FuncionarioService().consultar(funcionarioFiltrado, usuarioSessao.getUsuario());	
+		funcionarios = new FuncionarioService().consultar(funcionarioFiltro, usuarioSessao.getUsuario());	
 		
 		}
 		  catch (Exception ex) {
@@ -72,17 +76,6 @@ public void selecionar(Funcionario funcionario) {
 	
 }
 
-
-// GETTERS AND SETTERS
-
-public Funcionario getFuncionarioFiltrado() {
-	return funcionarioFiltrado;
-}
-
-
-public void setFuncionarioFiltrado(Funcionario funcionarioFiltrado) {
-	this.funcionarioFiltrado = funcionarioFiltrado;
-}
 
 
 public Funcionario getFuncionario() {
@@ -122,6 +115,16 @@ public String getItem() {
 
 public void setItem(String item) {
 	this.item = item;
+}
+
+
+public UsuarioSessao getUsuarioSessao() {
+	return usuarioSessao;
+}
+
+
+public void setUsuarioSessao(UsuarioSessao usuarioSessao) {
+	this.usuarioSessao = usuarioSessao;
 }
 	
 }

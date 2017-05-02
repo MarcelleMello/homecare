@@ -116,7 +116,7 @@ public static List<Funcionario> consultar(Funcionario funcionarioFiltro, Funcion
 		
 	    List<Funcionario> funcionarios = new ArrayList<Funcionario>();
 	    
-	    String sql = " SELECT * FROM TBL_FUNCIONARIO F WHERE F.ID_FUNCIONARIO = ? " ;	     
+	    String sql = " SELECT * FROM TBL_FUNCIONARIO F WHERE 1 " ;	     
 	      
 	      if(funcionarioFiltro.getNome() != null && !"".equals(funcionarioFiltro.getNome())) {
 	           sql += " AND F.NOME ILIKE ? ";
@@ -151,9 +151,7 @@ public static List<Funcionario> consultar(Funcionario funcionarioFiltro, Funcion
 	    PreparedStatement stmt = con.prepareStatement(sql);
 	    int indice = 0;
 	    Funcionario func = null;
-	    
-	    stmt.setInt(++indice, usuarioSessao.getId());
-	   	   	    
+	    	   	   	    
 	    if(funcionarioFiltro.getNome() != null && !"".equals(funcionarioFiltro.getNome())) {
 	   	 	stmt.setString(++indice, "%"+funcionarioFiltro.getNome()+"%");
 	    }
@@ -199,6 +197,8 @@ public static List<Funcionario> consultar(Funcionario funcionarioFiltro, Funcion
 		    LocalDate data = rs.getDate("DATA_CADASTRO").toLocalDate();    
 		    func.setDataCadastro(data);		    
 		    func.setId(rs.getInt("ID_FUNCIONARIO")); 
+		    
+		    funcionarios.add(func);
 		    
 	    }
 	    

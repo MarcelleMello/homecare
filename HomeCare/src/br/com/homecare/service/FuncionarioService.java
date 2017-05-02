@@ -59,13 +59,10 @@ public class FuncionarioService implements Serializable {
 		Connection con = DBUtil.getConnection();
 		List<Funcionario> funcionarios = null;
 		try {
-			DBUtil.beginTransaction(con);
 			
 			funcionarios = FuncionarioDAO.consultar(funcionarioFiltrado, usuarioSessao, con);
 		
-			DBUtil.commit(con);
 		} catch (Exception e) {
-			DBUtil.rollback(con);
 			throw new Exception(e);
 		} finally {
 			DBUtil.closeConnection(con);
