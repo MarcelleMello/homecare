@@ -52,60 +52,43 @@
         };
 	</script>
 	
+	<style type="text/css">
 	
+		.ui-panelmenu .ui-panelmenu-header a {
+		    color: #333333;
+		    text-decoration: none;
+		}
+
+	</style>
 </h:head>
 
 <h:body>
 
 	<header class="aw-topbar">
 		<h:graphicImage library="algaworks" name="images/transparente.png" />
-		
 		<a href="#" class="aw-toggle  js-toggle"><i class="fa  fa-bars"></i></a>
 	</header>
-	<h:form>
-	<aside class="aw-sidebar  js-sidebar">
-
-	</aside>
-			
-			
-			<p:menuitem value="Teste" action="privado/index" />
-				 <h:form >  
-                
-                    <p:menubar style="background: #d0d0d0 repeat !important; color:black;">
-                        
-                        <p:submenu label="Gráficos"  icon="fa fa-line-chart" >
-                             <p:menuitem value="Gráficos Mensal" />
-                        </p:submenu>                         
-                            
-                        <p:submenu label="Visualizar Fechamentos"  icon="fa fa-th-list" >
-                            
-                            <p:menuitem value="Consolidados" />
-                        </p:submenu>    
-                        
-                            
-                        
-                    </p:menubar>
-                    
-                </h:form>
-				
-		 
-		
-		<!-- <nav class="aw-menu">
-			<ul>
-				<li>
-					<h:link><i class="fa  fa-fw  fa-home"></i>Home</h:link>
-				</li>
-				<li>
-					<h:commandLink >   <i class="fa  fa-fw  fa-sign-out"></i>   Sair  </h:commandLink>
-				</li>
-			</ul>
-		</nav>  -->
-
 	
+	<h:form id="form-layout" styleClass="layout">
+	
+		<aside class="aw-sidebar  js-sidebar">
+			<br/><br/>
+			
+			 <p:panelMenu styleClass="menu">
+			 
+		        <p:submenu label="Funcionários">
+		            <p:menuitem value="Cadastar" action="cadastrarFuncionario"/>
+		            <p:menuitem value="Consultar" action="consultarFuncionario"/>
+		        </p:submenu>
+	
+	    	</p:panelMenu>
+		</aside>
+
 	</h:form>
 	
 			
 	<section class="aw-content  js-content">
+		<br/><br/>
 		<ui:insert name="content" />
 	</section>
 	

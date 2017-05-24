@@ -69,6 +69,27 @@ public class FuncionarioService implements Serializable {
 		}
 		return funcionarios;
 	}
+
+	public Funcionario ObterPorId(int id) throws Exception {
+		FuncionarioDAO dao = new FuncionarioDAO();
+		Connection con = DBUtil.getConnection();
+		Funcionario f = null;
+		try {
+			
+			f = dao.ObterPorId(id, con);
+		
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.closeConnection(con);
+		}
+		return f;
+	}
+
+	public void atualizar(Funcionario funcionario) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 
 	

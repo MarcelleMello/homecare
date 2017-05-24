@@ -18,4 +18,34 @@
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#paginas#publico#index.jsf"
   PATH="/paginas/publico/index.jsf" SHAPE="240,145,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules::2" SHAPE="32,241,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::2" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="cadastrarFuncionario::#paginas#privado#index.jsf" NAME="output"
+    PATH="/paginas/privado/index.jsf"
+    TARGET="rules:#paginas#privado#index.jsf"
+    TITLE="cadastrarFuncionario" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#paginas#privado#consultar.jsf"
+  PATH="/paginas/privado/consultar.jsf" SHAPE="240,257,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules::3" SHAPE="32,465,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::3" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="consultarFuncionario::#paginas#privado#consultar.jsf"
+    NAME="output" PATH="/paginas/privado/consultar.jsf"
+    TARGET="rules:#paginas#privado#consultar.jsf"
+    TITLE="consultarFuncionario" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::4" SHAPE="32,577,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::4" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="editarFuncionario::#paginas#privado#editar.jsf" NAME="output"
+    PATH="/paginas/privado/editar.jsf"
+    TARGET="rules:#paginas#privado#editar.jsf" TITLE="editarFuncionario" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#paginas#privado#editar.jsf"
+  PATH="/paginas/privado/editar.jsf" SHAPE="240,593,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>

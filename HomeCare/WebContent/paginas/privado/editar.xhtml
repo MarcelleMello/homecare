@@ -1,0 +1,82 @@
+<ui:composition template="/WEB-INF/templates/Layout.xhtml"
+ xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">	
+	
+	<h:head></h:head>
+	
+	<ui:define name="content">
+	
+		<h:form id="form"  >
+	
+		<p:messages id="messages"  autoUpdate="true" closable="true" />
+				
+		<div class="ui-fluid" >
+			<p:tabView style="margin-top: 20px" id="container">
+				<p:tab title="Dados básicos">
+					
+					<p:panelGrid columns="4" layout="grid"
+								columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-2, ui-grid-col-4"
+								styleClass="panelgrid-noborder">
+				
+							<p:outputLabel value="Nome: "/> 			
+							<p:inputText id="nome" value="#{editarFuncionarioBean.funcionario.nome}" required="true" 
+							requiredMessage="O campo Nome deve ser preenchido."    size="22" maxlength="60" />
+															   
+							<p:outputLabel value="Telefone: "/> 			
+							<p:inputMask id="telefone" value="#{editarFuncionarioBean.funcionario.telefone}" mask="(99)9999-9999?9"   
+							required="true" requiredMessage="O campo Telefone deve ser preenchido."   size="18" maxlength="60"  />							
+										 
+							<p:outputLabel value="Matrícula: "/> 			
+							<p:inputMask id="matricula" value="#{editarFuncionarioBean.funcionario.codigo}" mask="99?99999" 
+							required="true" requiredMessage="O campo Matrícula deve ser preenchido."  size="18" maxlength="60" />						 
+										   
+							<p:outputLabel value="Micro Area: "/> 			
+							<p:inputText id="microarea" value="#{editarFuncionarioBean.funcionario.microArea}" required="true" 
+							requiredMessage="O campo Micro Area deve ser preenchido."   size="18" maxlength="60" />							   
+										   
+							<p:outputLabel value="Senha: "/> 			
+							<p:password id="senha" value="#{editarFuncionarioBean.funcionario.senha}" required="true" 
+							requiredMessage="O campo Senha deve ser preenchido."  size="18" maxlength="60" />
+											   						
+							<p:outputLabel value="Perfil:" styleClass="nomeCampo" />
+							<p:selectOneMenu id="perfil" required="true" requiredMessage="O campo Perfil deve ser preenchido.  " size="30" 
+							maxlength="60" value="#{editarFuncionarioBean.funcionario.perfil}">
+							<f:selectItems value="#{editarFuncionarioBean.perfis}" />	
+							</p:selectOneMenu>							        
+													
+							<p:outputLabel value="Codigo comunidade: "/> 			
+							<p:selectOneMenu id="comunidades" required="true" requiredMessage="O campo Perfil deve ser preenchido.  " 
+							size="30" maxlength="60" value="#{editarFuncionarioBean.funcionario.comunidade}" converter="comunidadeConverter">
+								<f:selectItems value="#{editarFuncionarioBean.comunidades}" />	
+							</p:selectOneMenu>
+																		   
+							<p:outputLabel value="Ativo:" styleClass="nomeCampo" />						
+							<p:selectOneMenu id="ativo" required="true" requiredMessage="O campo Perfil deve ser preenchido.  " 
+							size="30" maxlength="60" value="#{editarFuncionarioBean.funcionario.ativo}">
+								<f:selectItems value="#{editarFuncionarioBean.simNao}" />	
+							</p:selectOneMenu>	
+							
+							
+							<h:inputHidden id="id" value="#{editarFuncionarioBean.funcionario.id}" />	
+							
+					</p:panelGrid>					
+	
+				</p:tab>
+				
+				
+			</p:tabView>
+			
+			<div class="btnAcao">
+				<p:commandButton  id="btnAtualizar" ajax="true"  actionListener="#{editarFuncionarioBean.atualizar}"  icon="fa fa-check" value="Atualizar" process="@form" update="@form"  />									
+			</div>
+		</div>
+				
+	
+		</h:form>
+	
+	</ui:define>
+	
+</ui:composition>

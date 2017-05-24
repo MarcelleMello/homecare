@@ -209,6 +209,41 @@ public static List<Funcionario> consultar(Funcionario funcionarioFiltro, Funcion
 
 }
 
+public Funcionario ObterPorId(int id, Connection con) throws SQLException {
+	String sql = "SELECT * FROM TBL_FUNCIONARIO WHERE ID_FUNCIONARIO = ? ";
+	
+	Funcionario f = null;
+		
+	PreparedStatement stmt = con.prepareStatement(sql);
+	stmt.setInt(1, id);
+			
+	ResultSet rs = stmt.executeQuery();
+			
+	if (rs.next()) {
+			 
+		f = new Funcionario();
+	         
+		f.setId(rs.getInt("ID_FUNCIONARIO"));
+	    f.setNome(rs.getString("NOME"));
+	    f.setCodigo(rs.getString("COD_FUNCIONARIO"));
+	    f.setSenha(rs.getString("SENHA"));
+	    f.setTelefone(rs.getString("TELEFONE"));
+	    
+	    f.setAtivo(SimNao.buscaEnum(rs.getInt("ATIVO")));
+	    f.setPerfil(Perfil.buscaEnum(rs.getInt("PERFIL")));
+	    
+	    LocalDate data = rs.getDate("DATA_CADASTRO").toLocalDate();    
+	    f.setDataCadastro(data);
+	         
+	    f.setComunidade(new Comunidade(rs.getInt("ID_COMUNIDADE")));
+	} 
+		      
+	rs.close();
+	stmt.close();
+		      	
+	return f;
+}
+
 	
 /*	public static List<Funcionario> consultar(Funcionario funcionarioFiltrado, Funcionario usuario, Connection con) throws SQLException {
 		
