@@ -80,10 +80,8 @@ public class EditarFuncionarioBean extends AbstractBean implements Serializable{
 			
 			service.atualizar(funcionario);
 			
-			displayInfoMessage("Cadastrado com sucesso.");
-			
-			funcionario = new Funcionario();
-			
+			displayInfoMessage("Atualizado com sucesso.");
+						
 		} catch (Exception e) {
 			displayErrorMessage(e.getMessage());
 		}

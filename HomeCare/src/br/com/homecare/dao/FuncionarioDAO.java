@@ -225,10 +225,9 @@ public Funcionario ObterPorId(int id, Connection con) throws SQLException {
 	         
 		f.setId(rs.getInt("ID_FUNCIONARIO"));
 	    f.setNome(rs.getString("NOME"));
-	    f.setCodigo(rs.getString("COD_FUNCIONARIO"));
 	    f.setSenha(rs.getString("SENHA"));
 	    f.setTelefone(rs.getString("TELEFONE"));
-	    
+	    f.setCodigo(rs.getString("COD_FUNCIONARIO"));
 	    f.setAtivo(SimNao.buscaEnum(rs.getInt("ATIVO")));
 	    f.setPerfil(Perfil.buscaEnum(rs.getInt("PERFIL")));
 	    
@@ -244,52 +243,32 @@ public Funcionario ObterPorId(int id, Connection con) throws SQLException {
 	return f;
 }
 
-	
-/*	public static List<Funcionario> consultar(Funcionario funcionarioFiltrado, Funcionario usuario, Connection con) throws SQLException {
+	public void Atualizar(Funcionario f, Connection con) throws SQLException {
 		
-		String sql = " SELECT * FROM TBL_FUNCIONARIO ";
-        
+		String sql = " UPDATE TBL_FUNCIONARIO SET NOME = ?, TELEFONE = ?, SENHA = ?, "
+				+ " MICRO_AREA = ?, ATIVO = ?, ID_COMUNIDADE = ?, PERFIL = ? "
+				+ " WHERE ID_FUNCIONARIO = ? ";
+				
+	    
 	    Integer indice = 0;
 	        
-	    
 	    PreparedStatement stmt = con.prepareStatement(sql);
+	
 	    stmt.setString(++indice, f.getNome());
 	    stmt.setString(++indice, f.getTelefone());
-	    stmt.setString(++indice, f.getCodigo());
-	    stmt.setString(++indice, f.getMicroArea());
 	    stmt.setString(++indice, f.getSenha());
-	    stmt.setInt(++indice, f.getPerfil().getValor());
-	    stmt.setInt(++indice, f.getComunidade().getId());
+	    
+	    stmt.setString(++indice, f.getMicroArea());
 	    stmt.setInt(++indice, f.getAtivo().getValor());
-	  
-	    ResultSet rs = stmt.executeQuery();
+	    stmt.setInt(++indice, f.getComunidade().getId());
+	    stmt.setInt(++indice, f.getPerfil().getValor());
+
+	    stmt.setInt(++indice, f.getId());
 	    
-	    if (rs.next()) {
-			 
-			f = new Funcionario();
-			
-			f.setNome(rs.getString("NOME"));
-			f.setTelefone(rs.getString("TELEFONE"));
-			f.setCodigo(rs.getString("COD_FUNCIONARIO"));
-			f.setMicroArea(rs.getString("MICRO_AREA"));
-		    f.setSenha(rs.getString("SENHA"));		    
-		    f.setPerfil(Perfil.buscaEnum(rs.getInt("PERFIL")));		    
-		    f.setComunidade(new Comunidade(rs.getInt("ID_COMUNIDADE")));
-		    f.setAtivo(SimNao.buscaEnum(rs.getInt("ATIVO")));
-		    LocalDate data = rs.getDate("DATA_CADASTRO").toLocalDate();    
-		    f.setDataCadastro(data);		    
-		    f.setId(rs.getInt("ID_FUNCIONARIO"));
-		} 
-	   
-	    rs.close();
+	    stmt.executeUpdate();
 	    stmt.close();
-	    
-	    return f;
-			
+	 
 	}
-
-
-*/
 
 	
 }

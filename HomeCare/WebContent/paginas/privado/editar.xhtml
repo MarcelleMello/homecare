@@ -30,8 +30,7 @@
 							required="true" requiredMessage="O campo Telefone deve ser preenchido."   size="18" maxlength="60"  />							
 										 
 							<p:outputLabel value="Matrícula: "/> 			
-							<p:inputMask id="matricula" value="#{editarFuncionarioBean.funcionario.codigo}" mask="99?99999" 
-							required="true" requiredMessage="O campo Matrícula deve ser preenchido."  size="18" maxlength="60" />						 
+							<p:inputText id="matricula" value="#{editarFuncionarioBean.funcionario.codigo}" disabled="true" styleClass="negrito"/>						 
 										   
 							<p:outputLabel value="Micro Area: "/> 			
 							<p:inputText id="microarea" value="#{editarFuncionarioBean.funcionario.microArea}" required="true" 
