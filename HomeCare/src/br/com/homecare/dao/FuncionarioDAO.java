@@ -229,6 +229,7 @@ public Funcionario ObterPorId(int id, Connection con) throws SQLException {
 	    f.setTelefone(rs.getString("TELEFONE"));
 	    f.setCodigo(rs.getString("COD_FUNCIONARIO"));
 	    f.setAtivo(SimNao.buscaEnum(rs.getInt("ATIVO")));
+	    f.setMicroArea(rs.getString("MICRO_AREA"));
 	    f.setPerfil(Perfil.buscaEnum(rs.getInt("PERFIL")));
 	    
 	    LocalDate data = rs.getDate("DATA_CADASTRO").toLocalDate();    
