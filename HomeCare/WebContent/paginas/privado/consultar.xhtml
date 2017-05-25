@@ -17,14 +17,16 @@
 	
 	
 
-			<p:inputText id="nome" size="30" placeholder="Digite aqui" />
+			<p:inputText id="nome" size="30" placeholder="Digite aqui" value="#{consultarFuncionarioBean.funcionarioFiltro.nome}"/>
 			<br/><br/>
-			<p:commandButton value="Pesquisar" icon="fa fa-search" id="bt_pesquisarFiltro" update="@this" ajax="true" 
-			actionListener="#{consultarFuncionarioBean.consultar}" process="@this"/>
+			<p:commandButton value="Pesquisar" icon="fa fa-search" id="btFiltrar" update="@this container" ajax="true" 
+			actionListener="#{consultarFuncionarioBean.consultar}" process="@this nome"/>
     			
 	
 	
 	<br/><br/>
+	
+	<h:panelGroup id="container">
 	<p:dataTable  id="funcionarios"  value="#{consultarFuncionarioBean.funcionarios}" var="f" 
 	reflow="true">
 
@@ -53,7 +55,7 @@
        </p:column>               
     
     </p:dataTable >
-				
+		</h:panelGroup>		
 	
 		</h:form>
 	

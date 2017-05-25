@@ -44,7 +44,7 @@ public class ConsultarFuncionarioBean extends AbstractBean implements Serializab
 public void consultar() {
 	try {
 			
-		funcionarios = new FuncionarioService().consultar(funcionarioFiltro, usuarioSessao.getUsuario());	
+		funcionarios = new FuncionarioService().consultar(funcionarioFiltro);	
 		
 		}
 		  catch (Exception ex) {
@@ -126,5 +126,18 @@ public UsuarioSessao getUsuarioSessao() {
 public void setUsuarioSessao(UsuarioSessao usuarioSessao) {
 	this.usuarioSessao = usuarioSessao;
 }
+
+
+public Funcionario getFuncionarioFiltro() {
+	return funcionarioFiltro;
+}
+
+
+public void setFuncionarioFiltro(Funcionario funcionarioFiltro) {
+	this.funcionarioFiltro = funcionarioFiltro;
+}
 	
+
+
+
 }

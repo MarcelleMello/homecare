@@ -112,36 +112,20 @@ public class FuncionarioDAO implements Serializable{
 		return false;
 	}
 
-public static List<Funcionario> consultar(Funcionario funcionarioFiltro, Funcionario usuarioSessao, Connection con) throws SQLException {
+public static List<Funcionario> consultar(Funcionario funcionarioFiltro, Connection con) throws SQLException {
 		
 	    List<Funcionario> funcionarios = new ArrayList<Funcionario>();
 	    
 	    String sql = " SELECT * FROM TBL_FUNCIONARIO F WHERE 1 " ;	     
 	      
 	      if(funcionarioFiltro.getNome() != null && !"".equals(funcionarioFiltro.getNome())) {
-	           sql += " AND F.NOME ILIKE ? ";
+	           sql += " AND F.NOME LIKE ? ";
 	      }
-	      
-	      if(funcionarioFiltro.getTelefone() != null && !"".equals(funcionarioFiltro.getTelefone())) {
-	           sql += " AND F.TELEFONE ILIKE  ? "; 
-	      }	
-	      
-	      if(funcionarioFiltro.getCodigo() != null && !"".equals(funcionarioFiltro.getCodigo())) {
-	   	   sql += " AND F.COD_FUNCIONARIO ILIKE ? ";
-	      }
-	      
-	      if(funcionarioFiltro.getMicroArea() != null && !"".equals(funcionarioFiltro.getMicroArea())) {
-		   	   sql += " AND F.MICRO_AREA = ? ";
-		  }	     
-	      
+
 	      if(funcionarioFiltro.getPerfil() != null && !"".equals(funcionarioFiltro.getPerfil())) {
 		   	   sql += " AND F.PERFIL = ? ";
 		  }
-	      
-	      if(funcionarioFiltro.getComunidade() != null && !"".equals(funcionarioFiltro.getComunidade())) {
-		   	   sql += " AND F.ID_COMUNIDADE = ? ";
-		  }	    
-	      
+
 	      if(funcionarioFiltro.getAtivo() != null && !"".equals(funcionarioFiltro.getAtivo())) {
 		   	   sql += " AND F.ATIVO = ? ";
 		  }
@@ -155,32 +139,15 @@ public static List<Funcionario> consultar(Funcionario funcionarioFiltro, Funcion
 	    if(funcionarioFiltro.getNome() != null && !"".equals(funcionarioFiltro.getNome())) {
 	   	 	stmt.setString(++indice, "%"+funcionarioFiltro.getNome()+"%");
 	    }
-	    
-	    if(funcionarioFiltro.getTelefone() != null && !"".equals(funcionarioFiltro.getTelefone())) {
-	    	stmt.setString(++indice, "%"+funcionarioFiltro.getTelefone()+"%");
-	    }
-	    
-	    if(funcionarioFiltro.getCodigo() != null && !"".equals(funcionarioFiltro.getCodigo())) {
-	   	 	stmt.setString(++indice, "%"+funcionarioFiltro.getCodigo()+"%");
-	    }
-	    
-	    if(funcionarioFiltro.getMicroArea() != null && !"".equals(funcionarioFiltro.getMicroArea())) {
-	    	stmt.setString(++indice, "%"+funcionarioFiltro.getMicroArea()+"%");
-	    }
-	    
+
 	    if(funcionarioFiltro.getPerfil() != null && !"".equals(funcionarioFiltro.getPerfil())) {
 	   	 	stmt.setString(++indice, "%"+funcionarioFiltro.getPerfil()+"%");
 	    }
-	    
-	    if(funcionarioFiltro.getComunidade() != null && !"".equals(funcionarioFiltro.getComunidade())) {
-	    	stmt.setString(++indice, "%"+funcionarioFiltro.getComunidade()+"%");
-	    }
-	    
+	   
 	    if(funcionarioFiltro.getAtivo() != null && !"".equals(funcionarioFiltro.getAtivo())) {
 	   	 	stmt.setString(++indice, "%"+funcionarioFiltro.getAtivo()+"%");
 	    }
-	    
-	        		       
+	       
 	    ResultSet rs = stmt.executeQuery();
 	    
 	    while (rs.next()) {
@@ -194,8 +161,10 @@ public static List<Funcionario> consultar(Funcionario funcionarioFiltro, Funcion
 	    	func.setPerfil(Perfil.buscaEnum(rs.getInt("PERFIL")));		    
 	    	func.setComunidade(new Comunidade(rs.getInt("ID_COMUNIDADE")));
 		    func.setAtivo(SimNao.buscaEnum(rs.getInt("ATIVO")));
+		    
 		    LocalDate data = rs.getDate("DATA_CADASTRO").toLocalDate();    
-		    func.setDataCadastro(data);		    
+		    func.setDataCadastro(data);		
+		    
 		    func.setId(rs.getInt("ID_FUNCIONARIO")); 
 		    
 		    funcionarios.add(func);

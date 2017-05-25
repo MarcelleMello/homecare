@@ -55,12 +55,12 @@ public class FuncionarioService implements Serializable {
 		}
 	}
 	
-	public List<Funcionario> consultar(Funcionario funcionarioFiltrado, Funcionario usuarioSessao) throws ServiceException, Exception {		 
+	public List<Funcionario> consultar(Funcionario funcionarioFiltrado) throws ServiceException, Exception {		 
 		Connection con = DBUtil.getConnection();
 		List<Funcionario> funcionarios = null;
 		try {
 			
-			funcionarios = FuncionarioDAO.consultar(funcionarioFiltrado, usuarioSessao, con);
+			funcionarios = FuncionarioDAO.consultar(funcionarioFiltrado, con);
 		
 		} catch (Exception e) {
 			throw new Exception(e);
