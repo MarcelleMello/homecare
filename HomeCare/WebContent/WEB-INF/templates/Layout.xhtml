@@ -64,12 +64,16 @@
 
 <h:body>
 
+<h:form id="form-layout" styleClass="layout">
+
 	<header class="aw-topbar">
 		<h:graphicImage library="algaworks" name="images/transparente.png" />
+		<p:commandLink styleClass="aw-toggle" action="#{usuarioSessao.logOut()}" ><i class="fa  fa-power-off "></i> </p:commandLink>
 		<a href="#" class="aw-toggle  js-toggle"><i class="fa  fa-bars"></i></a>
+		
 	</header>
 	
-	<h:form id="form-layout" styleClass="layout">
+	
 	
 		<aside class="aw-sidebar  js-sidebar">
 			<br/><br/>
@@ -80,7 +84,7 @@
 		            <p:menuitem value="Cadastar" action="cadastrarFuncionario"/>
 		            <p:menuitem value="Consultar" action="consultarFuncionario"/>
 		        </p:submenu>
-	
+		        
 	    	</p:panelMenu>
 		</aside>
 
