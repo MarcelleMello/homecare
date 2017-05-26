@@ -21,33 +21,34 @@
  <PROCESS-ITEM NAME="rules::2" SHAPE="32,241,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules::2" NAME="item" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
-    ID="cadastrarFuncionario::#paginas#privado#cadastrar.jsf"
-    NAME="output" PATH="/paginas/privado/cadastrar.jsf"
-    TARGET="rules:#paginas#privado#cadastrar.jsf"
+    ID="cadastrarFuncionario::#paginas#privado#admin#cadastrar.jsf"
+    NAME="output" PATH="/paginas/privado/admin/cadastrar.jsf"
+    TARGET="rules:#paginas#privado#admin#cadastrar.jsf"
     TITLE="cadastrarFuncionario" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
- <PROCESS-ITEM NAME="rules:#paginas#privado#consultar.jsf"
-  PATH="/paginas/privado/consultar.jsf" SHAPE="240,257,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules::3" SHAPE="32,465,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules::3" NAME="item" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
-    ID="consultarFuncionario::#paginas#privado#consultar.jsf"
-    NAME="output" PATH="/paginas/privado/consultar.jsf"
-    TARGET="rules:#paginas#privado#consultar.jsf"
+    ID="consultarFuncionario::#paginas#privado#admin#consultar.jsf"
+    NAME="output" PATH="/paginas/privado/admin/consultar.jsf"
+    TARGET="rules:#paginas#privado#admin#consultar.jsf"
     TITLE="consultarFuncionario" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules::4" SHAPE="32,577,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules::4" NAME="item" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
-    ID="editarFuncionario::#paginas#privado#editar.jsf" NAME="output"
-    PATH="/paginas/privado/editar.jsf"
-    TARGET="rules:#paginas#privado#editar.jsf" TITLE="editarFuncionario" model-entity="JSFProcessItemOutput"/>
+    ID="editarFuncionario::#paginas#privado#admin#editar.jsf"
+    NAME="output" PATH="/paginas/privado/admin/editar.jsf"
+    TARGET="rules:#paginas#privado#admin#editar.jsf"
+    TITLE="editarFuncionario" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
- <PROCESS-ITEM NAME="rules:#paginas#privado#editar.jsf"
-  PATH="/paginas/privado/editar.jsf" SHAPE="240,593,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules:#paginas#privado#cadastrar.jsf"
-  PATH="/paginas/privado/cadastrar.jsf" SHAPE="240,369,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#paginas#privado#admin#editar.jsf"
+  PATH="/paginas/privado/admin/editar.jsf" SHAPE="240,593,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#paginas#privado#admin#cadastrar.jsf"
+  PATH="/paginas/privado/admin/cadastrar.jsf" SHAPE="240,257,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#paginas#privado#admin#consultar.jsf"
+  PATH="/paginas/privado/admin/consultar.jsf" SHAPE="240,481,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>

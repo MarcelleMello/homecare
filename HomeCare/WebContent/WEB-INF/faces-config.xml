@@ -28,7 +28,7 @@
       <from-view-id></from-view-id>
 	  <navigation-case>
 		  <from-outcome>cadastrarFuncionario</from-outcome>
-		  <to-view-id>/paginas/privado/cadastrar.jsf</to-view-id>
+		  <to-view-id>/paginas/privado/admin/cadastrar.jsf</to-view-id>
 		  <redirect/>
 	  </navigation-case>
 	</navigation-rule>
@@ -38,7 +38,7 @@
       <from-view-id></from-view-id>
 	  <navigation-case>
 		  <from-outcome>consultarFuncionario</from-outcome>
-		  <to-view-id>/paginas/privado/consultar.jsf</to-view-id>
+		  <to-view-id>/paginas/privado/admin/consultar.jsf</to-view-id>
 		  <redirect/>
 	  </navigation-case>
 	</navigation-rule>
@@ -47,7 +47,7 @@
       <from-view-id></from-view-id>
 	  <navigation-case>
 		  <from-outcome>editarFuncionario</from-outcome>
-		  <to-view-id>/paginas/privado/editar.jsf</to-view-id>
+		  <to-view-id>/paginas/privado/admin/editar.jsf</to-view-id>
 	
 	  </navigation-case>
 	</navigation-rule>

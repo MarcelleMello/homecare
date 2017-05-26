@@ -22,7 +22,7 @@ public class Autenticacao implements PhaseListener {
 		
 		if( restritos == null ) {
 			restritos = new ArrayList<String>();
-			livres.add("/paginas/privado/index.xhtml");
+			restritos.add("/paginas/privado/index.xhtml");
 		}
 		
 		if( livres == null ) {
@@ -32,7 +32,9 @@ public class Autenticacao implements PhaseListener {
 		
 		if( admin == null ) {
 			admin = new ArrayList<String>();
-			
+			admin.add("/paginas/privado/admin/cadastrar.xhtml");
+			admin.add("/paginas/privado/admin/consultar.xhtml");
+			admin.add("/paginas/privado/admin/editar.xhtml");
 		}
 		
 	}
