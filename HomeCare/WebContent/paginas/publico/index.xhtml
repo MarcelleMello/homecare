@@ -30,7 +30,7 @@
 
 			.form-signin 
 			{
-			  max-width: 360px;
+			  max-width: 460px;
 			  max-height: 650px;
 			  padding: 15px 35px 45px;
 			  margin: 0 auto;
@@ -81,56 +81,55 @@
 </h:head>
 	
 
-<h:body style="background: #eee !important;">
+<h:body style="  background: #eee !important;" styleClass="container">
+<h:form>	
 	
-	
-	<header class="aw-topbar">
-		<h:graphicImage library="algaworks" name="images/transparente.png" />
-	</header>
-	<br/><br/>
-	<div class="wrapper">
-		<h:form id="form" styleClass="form-signin">  
-		     
-			      	
-			<div align="center">
-				<p:messages id="msg" autoUpdate="true" closable="true"/>
-			</div>
-			      	
-			<div align="center">
-				<h2 class="form-signin-heading">
-					Login
-				</h2>
-			</div>
-	
-			<div class="form-group">
-				<p:inputText id="matricula" value="#{loginBean.matricula}" 
-					placeholder="Matrícula" 
-					styleClass="form-control input-lg" 	
-					required="true" 
-					requiredMessage="Informe a Matrícula"/>
-			</div>
+	<div class="row" style="margin-top: 100px"> 
 			
-		  	
+		<div class="col-md-4 col-md-offset-4"> 
 			
-			<div class="form-group">
-			    <p:inputText id="Senha" value="#{loginBean.senha}"
-				    placeholder="Senha" 
-				    styleClass="form-control input-lg"  
-				    required="true" 
-				    requiredMessage="Informe a senha"/>
-			</div>
+			<p:messages id="msg" autoUpdate="true" closable="true"/>
 			
-		
+			<div class="panel panel-primary"> 
+				<div class="panel-heading"> 
+						<h3>Login de Usuários</h3> 
+				</div> 
 			
-			<h:commandButton id="btnLogin" value="Entrar" action="#{loginBean.realizarLogin}" 
-				ajax="false" styleClass="btn btn-primary btn-lg btn-block" />
-			    		
-		</h:form>
+					<div class="panel-body"> 
+					
+					
+					<div class="form-group">
+								<p:inputText id="matricula" value="#{loginBean.matricula}" 
+									placeholder="Matrícula" 
+									styleClass="form-control input-lg" 	
+									required="true" 
+									requiredMessage="Informe a Matrícula"/>
+							</div>
+							
+						  	
+							
+							<div class="form-group">
+							    <p:inputText id="Senha" value="#{loginBean.senha}"
+								    placeholder="Senha" 
+								    styleClass="form-control input-lg"  
+								    required="true" 
+								    requiredMessage="Informe a senha"/>
+							</div>
+					
+					</div> 
+			
+			
+					<div class="panel-footer"> 
+						<h:commandButton id="btnLogin" value="Entrar" action="#{loginBean.realizarLogin}" 
+									ajax="false" styleClass="btn btn-success btn-lg btn-block" />
+						<hr/> Ainda não possui conta de acesso? 
+						<a href="#" data-target="#janela" data-toggle="modal"> Clique aqui </a> 
+					</div> 
+			</div> 
+		</div> 
 	</div>
-
-	
 	
 
-		
+	</h:form>	
 </h:body>
 </html>
