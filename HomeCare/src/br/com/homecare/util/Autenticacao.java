@@ -51,7 +51,7 @@ public class Autenticacao implements PhaseListener {
 	public void afterPhase(PhaseEvent event) {
 
 		FacesContext fc = event.getFacesContext();  
-	   
+		
 		ExternalContext ec = fc.getExternalContext();  
 	    	    
 	    UsuarioSessao usuarioSessao = fc.getApplication().evaluateExpressionGet (fc , "#{usuarioSessao}" , UsuarioSessao.class);
@@ -73,16 +73,19 @@ public class Autenticacao implements PhaseListener {
 		try {
 			//pagina restrita e usuario nao logado 
 			if(urlProtegida && !logado && !sessaoExpirou) {
-				ec.redirect(path + "/paginas/usuario/index.jsf");
+				ec.redirect(path + "/paginas/publico/403.jsf");
 			
 			//nao sendo pagina restrita, nao estando logado , sessao expirou, pagina nao for de admin e pagina nao for de primeiro acesso
 			} else if(!urlProtegida && !logado && sessaoExpirou && !urlAdmin) {
 				ec.getSessionMap().put("sessaoExpirou", false);  
-				ec.redirect(path + "/paginas/usuario/index.jsf?faces-redirect=true&includeViewParams=true&sessaoexpirou=true");
+				ec.redirect(path + "/paginas/publico/index.jsf?faces-redirect=true&includeViewParams=true&sessaoexpirou=true");
 				
 			//pagina adiministrador e usuario nao logado	
 			} else if(urlAdmin && !logado && !sessaoExpirou) {
-				ec.redirect(path + "/paginas/usuario/index.jsf");
+				ec.redirect(path + "/paginas/public/403.jsf");
+			
+			} else if(urlAdmin && !logado && !sessaoExpirou) {
+				ec.redirect(path + "/paginas/public/403.jsf");
 			
 			}
 		} catch (Exception ex) {
