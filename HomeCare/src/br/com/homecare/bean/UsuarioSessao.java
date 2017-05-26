@@ -20,20 +20,16 @@ public class UsuarioSessao extends AbstractBean implements Serializable{
 		return "login";
 	}
 	
-	
 	private HttpServletRequest getRequest() {
 		return (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
 	}
-
-
+	
 	public Funcionario getUsuario() {
 		return usuario;
 	}
 
-
 	public void setUsuario(Funcionario usuario) {
 		this.usuario = usuario;
 	}
-
 
 }

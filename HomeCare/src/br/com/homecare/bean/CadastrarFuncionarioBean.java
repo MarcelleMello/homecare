@@ -123,7 +123,4 @@ public class CadastrarFuncionarioBean extends AbstractBean implements Serializab
 	public void setUsuarioSessao(UsuarioSessao usuarioSessao) {
 		this.usuarioSessao = usuarioSessao;
 	}
-	
-	
-	
 }
