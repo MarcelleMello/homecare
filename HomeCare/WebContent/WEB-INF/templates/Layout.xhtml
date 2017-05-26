@@ -75,23 +75,25 @@
 			      <ul class="aw-menu__list">
 			
 			        <li class="aw-menu__item">
-			          <p:commandLink action="principal"><i class="fa  fa-fw  fa-home"></i><span>Dashboard</span></p:commandLink>
+			          <h:commandLink action="principal">
+			          	<i class="fa  fa-fw  fa-home"></i><span>Dashboard</span>
+			          </h:commandLink>
 			        </li>
 			
 			        <li class="aw-menu__item  is-active">
-			          <p:commandLink>
+			          <a href="#">
 			            <i class="fa  fa-fw  fa-file-text"></i><span>Funcionários</span>
 			            <i class="aw-menu__navigation-icon  fa"></i>
-			          </p:commandLink>
+			          </a>
 			      
 			          <ul class="aw-menu__list  aw-menu__list--sublist">
 			            <li class="aw-menu__item  aw-menu__item--link">
-			             <p:commandLink action="cadastrarFuncionario">Cadastrar</p:commandLink></li>
+			             <h:commandLink action="cadastrarFuncionario">Cadastrar</h:commandLink></li>
 			          </ul>
 			          
 			          <ul class="aw-menu__list  aw-menu__list--sublist">
 			            <li class="aw-menu__item  aw-menu__item--link">
-			             <p:commandLink action="consultarFuncionario">Consultar</p:commandLink></li>
+			             <h:commandLink action="consultarFuncionario">Consultar</h:commandLink></li>
 			          </ul>
 			          
 			        </li>
