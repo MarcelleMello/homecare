@@ -21,9 +21,9 @@
  <PROCESS-ITEM NAME="rules::2" SHAPE="32,241,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules::2" NAME="item" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
-    ID="cadastrarFuncionario::#paginas#privado#index.jsf" NAME="output"
-    PATH="/paginas/privado/index.jsf"
-    TARGET="rules:#paginas#privado#index.jsf"
+    ID="cadastrarFuncionario::#paginas#privado#cadastrar.jsf"
+    NAME="output" PATH="/paginas/privado/cadastrar.jsf"
+    TARGET="rules:#paginas#privado#cadastrar.jsf"
     TITLE="cadastrarFuncionario" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
@@ -48,4 +48,6 @@
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#paginas#privado#editar.jsf"
   PATH="/paginas/privado/editar.jsf" SHAPE="240,593,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#paginas#privado#cadastrar.jsf"
+  PATH="/paginas/privado/cadastrar.jsf" SHAPE="240,369,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>

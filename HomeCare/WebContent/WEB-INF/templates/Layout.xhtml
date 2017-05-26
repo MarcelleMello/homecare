@@ -17,9 +17,11 @@
 	<h:outputStylesheet library="algaworks" name="styles/layout.css" />
 	<h:outputStylesheet library="algaworks" name="styles/components.css" />
 	<h:outputStylesheet library="styles" name="meusestilos.css" />
+	<h:outputStylesheet library="algaworks" name="styles/algaworks.min.css" />
+	<h:outputScript target="head" library="primefaces" name="jquery/jquery.js" />
 	
-	<h:outputScript target="body" library="primefaces" name="jquery/jquery.js" />
-	<h:outputScript target="body" library="algaworks" name="javascripts/app.js" />
+	<h:outputScript target="head" library="algaworks" name="javascripts/app.js" />
+	<h:outputScript target="head" library="algaworks" name="javascripts/algaworks.js" />
 	
 	<!-- Traduzindo os calendários do Primefaces -->
 	<script>
@@ -50,16 +52,9 @@
             day: 'Dia',  
             allDayText : 'Todo Dia'  
         };
+        
 	</script>
-	
-	<style type="text/css">
-	
-		.ui-panelmenu .ui-panelmenu-header a {
-		    color: #333333;
-		    text-decoration: none;
-		}
 
-	</style>
 </h:head>
 
 <h:body>
@@ -70,22 +65,40 @@
 		<h:graphicImage library="algaworks" name="images/transparente.png" />
 		<p:commandLink styleClass="aw-toggle" action="#{usuarioSessao.logOut()}" ><i class="fa  fa-power-off "></i> </p:commandLink>
 		<a href="#" class="aw-toggle  js-toggle"><i class="fa  fa-bars"></i></a>
-		
 	</header>
 	
-	
-	
 		<aside class="aw-sidebar  js-sidebar">
+			
 			<br/><br/>
 			
-			 <p:panelMenu styleClass="menu">
-			 
-		        <p:submenu label="Funcionários">
-		            <p:menuitem value="Cadastar" action="cadastrarFuncionario"/>
-		            <p:menuitem value="Consultar" action="consultarFuncionario"/>
-		        </p:submenu>
-		        
-	    	</p:panelMenu>
+			 <nav class="aw-menu  js-menu">
+			      <ul class="aw-menu__list">
+			
+			        <li class="aw-menu__item">
+			          <p:commandLink action="principal"><i class="fa  fa-fw  fa-home"></i><span>Dashboard</span></p:commandLink>
+			        </li>
+			
+			        <li class="aw-menu__item  is-active">
+			          <p:commandLink>
+			            <i class="fa  fa-fw  fa-file-text"></i><span>Funcionários</span>
+			            <i class="aw-menu__navigation-icon  fa"></i>
+			          </p:commandLink>
+			      
+			          <ul class="aw-menu__list  aw-menu__list--sublist">
+			            <li class="aw-menu__item  aw-menu__item--link">
+			             <p:commandLink action="cadastrarFuncionario">Cadastrar</p:commandLink></li>
+			          </ul>
+			          
+			          <ul class="aw-menu__list  aw-menu__list--sublist">
+			            <li class="aw-menu__item  aw-menu__item--link">
+			             <p:commandLink action="consultarFuncionario">Consultar</p:commandLink></li>
+			          </ul>
+			          
+			        </li>
+			
+			      </ul>
+    		</nav>
+		
 		</aside>
 
 	</h:form>
