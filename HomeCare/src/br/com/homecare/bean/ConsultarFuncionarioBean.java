@@ -8,6 +8,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
 import br.com.homecare.model.Funcionario;
@@ -22,25 +23,41 @@ public class ConsultarFuncionarioBean extends AbstractBean implements Serializab
 
 	private static final long serialVersionUID = 6712522758268465657L;
 	
-	private String item;
+	private String tipoBusca;
 	private Funcionario funcionarioFiltro;
 	private Funcionario funcionario;
 	private List<Funcionario> funcionarios;	
-	private List<SelectItem> itens;
+	private List<SelectItem> tipoBuscas;
+	private String view;
 	
 	@ManagedProperty("#{usuarioSessao}")
 	private UsuarioSessao usuarioSessao;	
 	
 	@PostConstruct
 	public void init() {
-		itens = new ArrayList<SelectItem>();	
+		view = FacesContext.getCurrentInstance().getViewRoot().getViewId();
+		tipoBuscas = new ArrayList<SelectItem>();	
 		
 		funcionarioFiltro = new Funcionario(); 
 		
+		
+		if(view.endsWith("consultar.xhtml")) {
+			carregarTipoBuscas();
+		}
 		consultar();
 	}
 		
 	
+public String getView() {
+		return view;
+	}
+
+
+	public void setView(String view) {
+		this.view = view;
+	}
+
+
 public void consultar() {
 	try {
 			
@@ -53,33 +70,35 @@ public void consultar() {
 		
 }
 
-public void carregarItens() {
+
+public void carregarTipoBuscas() {
 	try {
 		
-		itens.add(new SelectItem("", "SELECIONE"));
-		itens.add(new SelectItem("NOME"));
-		itens.add(new SelectItem("TELEFONE"));
-		itens.add(new SelectItem("MATRÍCULA"));
-		itens.add(new SelectItem("MICROAREA"));
-		itens.add(new SelectItem("PERFIL"));
-		itens.add(new SelectItem("ID_COMUNIDADE"));
-		itens.add(new SelectItem("ATIVO"));
-		itens.add(new SelectItem("DATA DE CADASTRO"));
+		tipoBuscas.add(new SelectItem("Selecione"));
+		tipoBuscas.add(new SelectItem("Nome"));
+		tipoBuscas.add(new SelectItem("Telefone"));
+		
 	
 	} catch (Exception e) {
 		e.printStackTrace();
 	}
 }
 
-public void selecionar(Funcionario funcionario) {
-	
-	
-}
 
 
 
 public Funcionario getFuncionario() {
 	return funcionario;
+}
+
+
+public Funcionario getFuncionarioFiltro() {
+	return funcionarioFiltro;
+}
+
+
+public void setFuncionarioFiltro(Funcionario funcionarioFiltro) {
+	this.funcionarioFiltro = funcionarioFiltro;
 }
 
 
@@ -98,23 +117,23 @@ public void setFuncionarios(List<Funcionario> funcionarios) {
 }
 
 
-public List<SelectItem> getItens() {
-	return itens;
+public List<SelectItem> getTipoBuscas() {
+	return tipoBuscas;
 }
 
 
-public void setItens(List<SelectItem> itens) {
-	this.itens = itens;
+public void setTipoBuscas(List<SelectItem> tipoBuscas) {
+	this.tipoBuscas = tipoBuscas;
 }
 
 
-public String getItem() {
-	return item;
+public String getTipoBusca() {
+	return tipoBusca;
 }
 
 
-public void setItem(String item) {
-	this.item = item;
+public void setTipoBusca(String tipoBusca) {
+	this.tipoBusca = tipoBusca;
 }
 
 

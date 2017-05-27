@@ -9,7 +9,42 @@
 	
 	<ui:define name="content">
 	
+<<<<<<< HEAD
 		<h:form id="form" >
+=======
+<f:view>
+		<h:form id="form"  >
+
+		
+		<p:messages id="msgConsultarFunc" globalOnly="false" closable="true"/>		
+		
+		<div class="titulo">
+			 <h1>Consulta de Funcionários</h1>
+		</div> 
+		  
+		  <br/>  
+		  <div id="buscar" align="center">  
+		  <h:panelGrid columns="4" cellpadding="5" cellspacing="5">
+		   
+		  <h:outputText value="Buscar por: "/>
+				<p:selectOneMenu id="TipoBusca" value="#{consultarFuncionarioBean.tipoBusca}" required="#{param['form:buscar'] ne null}" 
+				requiredMessage="Informe um tipo de pesquisa.">
+		            <f:selectItems value="#{consultarFuncionarioBean.tipoBuscas}" />
+		        </p:selectOneMenu>      			
+		    
+		  	<p:inputText id="buscar" size="40" placeholder="Buscar" />
+		   	<p:commandButton value="Pesquisar" icon="fa fa-search" id="bt_pesquisarFiltro" update="@form" ajax="true" 
+		   	actionListener="#{consultarFuncionarioBean.consultar}" />
+		   	
+		   	
+		   			   	 		   	
+		  </h:panelGrid>
+		  </div>         			
+		           			
+	<br/>
+	
+	
+>>>>>>> master
 	
 		<p:messages id="messages"  autoUpdate="true" closable="true" />
 		  
@@ -23,6 +58,14 @@
 			actionListener="#{consultarFuncionarioBean.consultar}" process="@this nome"/>
     			
 	
+<<<<<<< HEAD
+=======
+	<p:panel header="#{f.nome}" style="text-align:center">
+            <h:panelGrid columns="1" style="width:100%">
+                
+            </h:panelGrid>
+        </p:panel>
+>>>>>>> master
 	
 	<br/><br/>
 	
@@ -49,6 +92,7 @@
        <p:column headerText="Ativo" width="50" >
            	<h:outputText value="#{f.ativo}" />
        </p:column>
+<<<<<<< HEAD
 
        <p:column headerText="Ações" width="50">
 	       <div align="center">
@@ -56,6 +100,22 @@
 	       			<f:param name="idFuncionario" value="#{f.id}" />
 	       		</p:commandButton> 
 	       </div>
+=======
+       
+       <p:column headerText="Ativo" sortBy="#{f.ativo}">
+          <h:outputText value="#{f.ativo}" />
+       </p:column> 
+       
+        <p:column headerText="Data de Cadastro" sortBy="#{f.dataCadastro}">
+          <h:outputText value="#{f.dataCadastro}" />
+       </p:column>     
+     
+       <p:column headerText="Editar">
+		 <center> 
+		 <p:commandButton icon="fa fa-pencil-square-o" action="#" 
+		 process="@this" style="width: 50px; font-size: 16px; text-align: center"/> 
+		 </center>
+>>>>>>> master
        </p:column>               
     
     </p:dataTable >
