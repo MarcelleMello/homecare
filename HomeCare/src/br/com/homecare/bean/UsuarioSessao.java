@@ -12,7 +12,7 @@ import br.com.homecare.model.Funcionario;
 public class UsuarioSessao extends AbstractBean implements Serializable{
 
 	private static final long serialVersionUID = -7842545553301610129L;
-	
+	//usuario
 	private Funcionario usuario;
 	
 	public String logOut() {
@@ -30,6 +30,10 @@ public class UsuarioSessao extends AbstractBean implements Serializable{
 
 	public void setUsuario(Funcionario usuario) {
 		this.usuario = usuario;
+	}
+	
+	public boolean checkPerfil(String id) {
+		return (usuario.getPerfil().getValor() == Integer.valueOf(id));
 	}
 
 }

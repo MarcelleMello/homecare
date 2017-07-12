@@ -1,0 +1,314 @@
+<ui:composition template="/WEB-INF/templates/Layout.xhtml"
+ xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">	
+	
+	<h:head></h:head>
+	
+	<ui:define name="content">
+	
+		<h:form id="form">
+
+		<p:messages id="messages"  autoUpdate="true" closable="true" />
+				
+		<div class="ui-fluid" >
+		
+			<p:tabView activeIndex="0"  style="margin-top: 20px" rendered="#{!editarCidadaoBean.idadeVerificada}">
+				
+				<p:tab title="Verificar Idade" >
+					<p:panelGrid columns="4" layout="grid"
+								columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-2, ui-grid-col-4"
+								styleClass="panelgrid-noborder" >
+								
+							<p:outputLabel value="*Código da família: "/> 			
+							<p:inputText id="codigo1" value="#{editarCidadaoBean.cidadao.familia.codigo}" readonly="true" style="color:red;"/>						 
+								
+							<p:outputLabel value="*Data de nascimento: "/> 			
+							<p:calendar id="dataNasc1" converter="localDateConverter" value="#{editarCidadaoBean.cidadao.dataNascimento}" 
+								required="true" pattern="dd/MM/yyyy" locale="pt" mask="true"
+								requiredMessage="O campo Data de nascimento deve ser preenchido."  
+								size="18" converterMessage="Data de nascimento inválida">								
+							</p:calendar>		
+								
+					</p:panelGrid>
+				</p:tab>
+				
+				</p:tabView>
+				
+				
+				<p:tabView activeIndex="#{editarCidadaoBean.tabindex}"   style="margin-top: 20px" id="container" rendered="#{editarCidadaoBean.idadeVerificada}">
+				
+				<p:tab id="tabRecemNasc" title="Recém nascido" rendered="#{editarCidadaoBean.recemNascido()}">
+					<p:panelGrid columns="4" layout="grid"
+								columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-2, ui-grid-col-4"
+								styleClass="panelgrid-noborder" id="contRecemNasc">
+				
+							<p:outputLabel value="*Código da família: "/> 			
+							<p:inputText id="codigo2" value="#{editarCidadaoBean.cidadao.familia.codigo}" readonly="true" style="color:red;"/>						 
+						
+							<p:outputLabel value="*Data de nascimento: "/> 			
+							<p:inputText id="dataNasc2" converter="localDateConverter" value="#{editarCidadaoBean.cidadao.dataNascimento}" 
+							required="true" pattern="dd/MM/yyyy" locale="pt" mask="true"
+							requiredMessage="O campo Data de nascimento deve ser preenchido."  
+							size="18" converterMessage="Data de nascimento inválida" readonly="true" style="color:red;">								
+							</p:inputText>
+						
+							<p:outputLabel value="*Nome: "/> 			
+							<p:inputText id="nome1" value="#{editarCidadaoBean.cidadao.nome}" required="true" 
+							requiredMessage="O campo Nome deve ser preenchido." size="18" maxlength="60" />	
+						
+							<p:outputLabel value="*Sexo: "/> 			
+							<p:selectOneRadio id="sexo1" required="true" requiredMessage="O campo Sexo deve ser selecionado." 
+							size="30" maxlength="60" value="#{editarCidadaoBean.cidadao.sexo}" >
+								<f:selectItems value="#{editarCidadaoBean.sexo}" />	
+							</p:selectOneRadio>	
+							
+							<p:outputLabel value="*Raça/Cor: "/> 			
+							<p:selectOneMenu id="racaCor1"  required="true" requiredMessage="O campo Raça/Cor deve ser selecionado."
+							size="30" value="#{editarCidadaoBean.cidadao.racaCor}" >
+								<f:selectItems value="#{editarCidadaoBean.racaCor}" />	
+							</p:selectOneMenu>					
+
+							<p:outputLabel value="UF de nascimento: "/> 			
+							<p:selectOneMenu id="uf" size="30" value="#{editarCidadaoBean.cidadao.uf}" >
+								<f:selectItems value="#{editarCidadaoBean.uf}" />	
+							</p:selectOneMenu>
+							
+							<p:outputLabel value="Município de nascimento: "/> 			
+							<p:inputText id="municipio" value="#{editarCidadaoBean.cidadao.municipio}" size="18" maxlength="60" />
+							
+							<p:outputLabel value="Nome da mãe "/> 			
+							<p:inputText id="nomeMae" value="#{editarCidadaoBean.cidadao.nomeMae}" size="18" maxlength="60" />
+							
+							<p:outputLabel value="Nome do pai: "/> 			
+							<p:inputText id="nomePai" value="#{editarCidadaoBean.cidadao.nomePai}" size="18" maxlength="60" />
+							
+							<p:outputLabel value="Tipo de parto: "/> 			
+							<p:selectOneMenu id="parto" size="30" value="#{editarCidadaoBean.cidadao.parto}" >
+								<f:selectItems value="#{editarCidadaoBean.parto}" />	
+							</p:selectOneMenu>
+							
+							<p:outputLabel value="Peso: "/> 			
+							<p:inputMask id="peso" value="#{editarCidadaoBean.cidadao.peso}" size="18" mask="99999" />
+							
+							<p:outputLabel value="Comprimento(cm): "/> 			
+							<p:inputMask id="comprimento" value="#{editarCidadaoBean.cidadao.comprimento}" size="18" mask="99999" />
+							
+							<p:outputLabel value="Per. Cefálico(cm): "/> 			
+							<p:inputMask id="cefalico" value="#{editarCidadaoBean.cidadao.cefalico}" size="18" mask="99999" />
+							
+							<p:outputLabel value="Data do teste do pezinho: "/> 			
+							<p:calendar id="dataTestePezinho" value="#{editarCidadaoBean.cidadao.dataTestePezinho}" 
+							 pattern="dd/MM/yyyy" locale="pt" mask="true" size="18" 
+							 converter="localDateConverter" converterMessage="Data do teste do pezinho inválida">
+							</p:calendar>
+							
+					</p:panelGrid>					
+				</p:tab>
+				
+				
+				
+				
+				<p:tab id="tabDadosBasic" title="Dados básicos" rendered="#{editarCidadaoBean.adulto() or editarCidadaoBean.menorDeIdade()}">
+					<p:panelGrid columns="4" layout="grid"
+								columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-2, ui-grid-col-4"
+								styleClass="panelgrid-noborder" id="contDadosBasic">
+				
+							<p:outputLabel value="*Código da família: "/> 			
+							<p:inputText id="codigo3" value="#{editarCidadaoBean.cidadao.familia.codigo}" readonly="true" style="color:red;"/>						 
+						
+							<p:outputLabel value="*Data de nascimento: "/> 			
+							<p:inputText id="dataNasc3" converter="localDateConverter" value="#{editarCidadaoBean.cidadao.dataNascimento}" 
+							required="true" pattern="dd/MM/yyyy" locale="pt" mask="true"
+							requiredMessage="O campo Data de nascimento deve ser preenchido."  
+							size="18" converterMessage="Data de nascimento inválida" readonly="true" style="color:red;">								
+							</p:inputText>
+						
+							<p:outputLabel value="*Nome: "/> 			
+							<p:inputText id="nome3" value="#{editarCidadaoBean.cidadao.nome}" required="true" 
+							requiredMessage="O campo Nome deve ser preenchido." size="18" maxlength="60" />	
+						
+							<p:outputLabel value="*Sexo: "/> 			
+							<p:selectOneRadio id="sexo3" required="true" requiredMessage="O campo Sexo deve ser selecionado.  " 
+							size="30" maxlength="60" value="#{editarCidadaoBean.cidadao.sexo}" >
+								<f:selectItems value="#{editarCidadaoBean.sexo}" />	
+							</p:selectOneRadio>	
+							
+							<p:outputLabel value="*Raça/Cor: "/> 			
+							<p:selectOneMenu id="racaCor3" required="true" requiredMessage="O campo Raça/Cor deve ser selecionado." 
+							size="30" value="#{editarCidadaoBean.cidadao.racaCor}" >
+								<f:selectItems value="#{editarCidadaoBean.racaCor}" />	
+							</p:selectOneMenu>					
+
+							<p:outputLabel value="**CPF: "/> 			
+							<p:inputMask id="cpf" value="#{editarCidadaoBean.cidadao.cpf}" mask="999.999.999-99" 
+							requiredMessage="O campo CPF deve ser preenchido." size="18" maxlength="14"  binding="#{cpf}"  required="#{editarCidadaoBean.adulto()}"/>	
+							
+							<p:outputLabel value="***DNV: "/> 			
+							<p:inputMask id="dnv" value="#{editarCidadaoBean.cidadao.dnv}" mask="99999999999" 
+							requiredMessage="O campo DNV deve ser preenchido." size="18" maxlength="11"  binding="#{dnv}" required="#{empty param[cpf.clientId] and editarCidadaoBean.menorDeIdade()}"/>
+							
+							<p:outputLabel value="Nacionalidade: "/> 			
+							
+							
+							<p:selectOneRadio id="nacionalidade" size="30" value="#{editarCidadaoBean.cidadao.nacionalidade}" >
+								<f:selectItems value="#{editarCidadaoBean.nacionalidade}" />	
+								<p:ajax event="change" process="@this" 
+								update="form:container:lblPaisOri 
+										form:container:paisOrigem 
+										form:container:lblDataEntBra 
+										form:container:dataEntrBrasil" /> 
+							</p:selectOneRadio>	
+							
+						
+						<h:panelGroup id="lblPaisOri">
+							<p:outputLabel value="País de origem: " rendered="#{editarCidadaoBean.cidadao.nacionalidade.valor eq 'E'}"/> 			
+						</h:panelGroup>
+						
+						<h:panelGroup id="paisOrigem">
+							<p:inputText id="txtpaisOrigem" value="#{editarCidadaoBean.cidadao.paisOrigem}" required="true" 
+							requiredMessage="O campo País de origem deve ser preenchido."   size="18" maxlength="100" rendered="#{editarCidadaoBean.cidadao.nacionalidade.valor eq 'E'}"/>
+						</h:panelGroup>
+						
+						<h:panelGroup id="lblDataEntBra">
+							<p:outputLabel value="Data de entrada no Brasil: " rendered="#{editarCidadaoBean.cidadao.nacionalidade.valor eq 'E'}"/> 			
+						</h:panelGroup>
+						
+						<h:panelGroup id="dataEntrBrasil">
+							<p:calendar id="txtDataEntrBrasil" value="#{editarCidadaoBean.cidadao.dataEntradaBrasil}" 
+								pattern="dd/MM/yyyy" locale="pt" mask="true"
+								converter="localDateConverter" converterMessage="Data de entrada no Brasil inválida" rendered="#{editarCidadaoBean.cidadao.nacionalidade.valor eq 'E'}">
+							</p:calendar>
+						</h:panelGroup>	
+							
+					</p:panelGrid>					
+				</p:tab>
+				
+				
+				
+				
+				<p:tab title="Informações adicionais" rendered="#{editarCidadaoBean.adulto() or editarCidadaoBean.menorDeIdade()}">
+					<p:panelGrid columns="4" layout="grid"
+								columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-2, ui-grid-col-4"
+								styleClass="panelgrid-noborder">
+
+							<p:outputLabel value="Presente durante a visita(PDV): "/> 			
+							<p:selectOneRadio id="presenteDuranteVisita"  
+							size="30" value="#{editarCidadaoBean.cidadao.presenteDuranteVisita}" >
+								<f:selectItems value="#{editarCidadaoBean.presenteDuranteVisita}" />	
+							</p:selectOneRadio>	
+
+							<p:outputLabel value="Possui plano de saúde: "/> 			
+							<p:selectOneRadio id="possuiPlanoSaude"  
+							size="30" value="#{editarCidadaoBean.cidadao.possuiPlanoSaude}" >
+								<f:selectItems value="#{editarCidadaoBean.possuiPlanoSaude}" />	
+							</p:selectOneRadio>	
+							
+							<p:outputLabel value="CNS: "/> 			
+							<p:inputMask id="cns" value="#{editarCidadaoBean.cidadao.cns}" size="18" mask="999999999999999" />
+							
+			
+							<p:outputLabel value="Situação familiar: "/> 			
+							<p:selectOneMenu id="situacaoFamiliar" size="30" autoWidth="false"
+							 value="#{editarCidadaoBean.cidadao.situacaoFamiliar}" >
+								<f:selectItems value="#{editarCidadaoBean.situacaoFamiliar}" />	
+							</p:selectOneMenu>							   
+								   
+							<p:outputLabel value="Frequentou a escola: "/> 			
+							<p:selectOneRadio id="frequentouEscola"  
+							size="30" value="#{editarCidadaoBean.cidadao.frequentaEscola}" >
+								<f:selectItems value="#{editarCidadaoBean.frequentaEscola}" />	
+							</p:selectOneRadio>		   
+								   
+							<p:outputLabel value="Natureza da escola: "/> 			
+							<p:selectOneMenu id="naturezaEscola"
+							size="30" value="#{editarCidadaoBean.cidadao.naturezaEscola}" >
+								<f:selectItems value="#{editarCidadaoBean.naturezaEscola}" />	
+							</p:selectOneMenu>		
+							
+							<p:outputLabel value="Ocupação: "/> 			
+							<p:inputText id="ocupacao" value="#{editarCidadaoBean.cidadao.ocupacao}" size="18" maxlength="60" />	   
+
+							<p:outputLabel value="Fumante: "/> 			
+							<p:selectOneRadio id="fumante" size="30" value="#{editarCidadaoBean.cidadao.fumante}" >
+								<f:selectItems value="#{editarCidadaoBean.fumante}" />	
+							</p:selectOneRadio>
+							
+							<p:outputLabel value="Observações: "/> 			
+							<p:inputTextarea id="observacoes" value="#{editarCidadaoBean.cidadao.observacoes}" 
+								cols="20" rows="5" size="18" maxlength="500" />
+							
+					</p:panelGrid>
+					
+				</p:tab>
+				
+				
+				
+				
+				
+				
+				<p:tab title="Benefícios" rendered="#{editarCidadaoBean.adulto() or editarCidadaoBean.menorDeIdade()}">
+					<p:panelGrid columns="4" layout="grid"
+									columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-2, ui-grid-col-4"
+									styleClass="panelgrid-noborder">
+									
+							<p:outputLabel value="Bolsa família: "/> 			
+							<p:selectOneRadio id="bolsaFamilia" 
+							size="30" maxlength="60" value="#{editarCidadaoBean.cidadao.bolsaFamilia}" >
+								<f:selectItems value="#{editarCidadaoBean.bolsaFamilia}" />	
+							</p:selectOneRadio>
+							
+							<p:outputLabel value="Cartão família carioca: "/> 			
+							<p:selectOneRadio id="cartaoFamiliaCarioca"  
+							size="30" maxlength="60" value="#{editarCidadaoBean.cidadao.cartaoFamiliaCarioca}" >
+								<f:selectItems value="#{editarCidadaoBean.cartaoFamiliaCarioca}" />	
+							</p:selectOneRadio>
+							
+							<p:outputLabel value="NIS: "/> 			
+							<p:inputMask id="nis" value="#{editarCidadaoBean.cidadao.nis}" size="18" maxlength="11" mask="99999999999"/>
+						</p:panelGrid>	
+				</p:tab>
+				
+		</p:tabView>
+		
+		
+		
+		<div class="btnAcao">
+			
+			<p:commandButton  id="btnVerificar" ajax="true"  action="#{editarCidadaoBean.verificarIdade}" icon="fa fa-search" value="Verificar" 
+			process="@form" update="@form" rendered="#{!editarCidadaoBean.idadeVerificada}" />
+			
+			
+			<h:panelGrid rendered="#{editarCidadaoBean.idadeVerificada}" columns="2" >
+			
+				<p:commandButton id="btnVoltar" icon="fa fa-reply" action="editarCidadao" ajax="false" value="Voltar" title="Voltar" immediate="true">
+				       			<f:param name="idCidadao" value="#{editarCidadaoBean.cidadao.id}" />
+				       		</p:commandButton> 
+				
+				<p:commandButton  id="btnAtualizar" ajax="true"  actionListener="#{editarCidadaoBean.atualizar}"  icon="fa fa-check" value="Atualizar" 
+				process="@form" update="@form"  />
+			
+			</h:panelGrid>    										
+		</div>
+		
+		<br></br><br></br>
+		
+		<p><h:outputText value="* Campo obrigatório para todas as idades." rendered="#{editarCidadaoBean.adulto() or editarCidadaoBean.menorDeIdade()}"/> </p>
+		<p><h:outputText value="** Campo obrigatório para maiores de 16 anos e preferencial para aqueles com até 16 anos." rendered="#{editarCidadaoBean.adulto() or editarCidadaoBean.menorDeIdade()}"/> </p>
+		<p><h:outputText value="*** Campo obrigatório para aqueles com até 16 anos se CPF não preenchido." rendered="#{editarCidadaoBean.adulto() or editarCidadaoBean.menorDeIdade()}"/></p>
+		
+		
+			
+			
+		</div> 
+	
+	
+
+		
+		</h:form>
+	
+	</ui:define>
+	
+</ui:composition>

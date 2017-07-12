@@ -1,0 +1,68 @@
+<ui:composition template="/WEB-INF/templates/Layout.xhtml"
+ xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">	
+	
+	<h:head></h:head>
+	
+	<ui:define name="content">
+	
+		<h:form id="form"  >
+	
+		<p:messages id="messages"  autoUpdate="true" closable="true" />
+				
+		<div class="ui-fluid" >
+			<p:tabView style="margin-top: 20px" id="container">
+				<p:tab title="Domicílio Família">
+					
+					<p:panelGrid columns="4" layout="grid"
+								columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-2, ui-grid-col-4"
+								styleClass="panelgrid-noborder">
+				
+							<p:outputLabel value="*Código: "/> 			
+							<p:inputMask id="codigo" value="#{cadastrarFamiliaBean.familia.codigo}" mask="99?99999" 
+							required="true" requiredMessage="O campo Matrícula deve ser preenchido."  size="18" maxlength="60" />						 
+							
+							<p:outputLabel value="*Endereço: "/> 			
+							<p:inputText id="endereco" value="#{cadastrarFamiliaBean.familia.endereco}" required="true" 
+							requiredMessage="O campo Endereço deve ser preenchido."   size="18" maxlength="60" />				
+							
+							<p:outputLabel value="*Bairro: "/> 			
+							<p:inputText id="bairro" value="#{cadastrarFamiliaBean.familia.bairro}" required="true" 
+							requiredMessage="O campo Bairro deve ser preenchido."   size="18" maxlength="60" />	
+							
+							<p:outputLabel value="*Complemento: "/> 			
+							<p:inputText id="complemento" value="#{cadastrarFamiliaBean.familia.complemento}" size="18" maxlength="60" />							   
+								   
+							<p:outputLabel value="*Número: "/> 			
+							<p:inputMask id="numero" value="#{cadastrarFamiliaBean.familia.numero}" mask="9?9999"   
+							required="true" requiredMessage="O campo Número deve ser preenchido."   size="18" maxlength="6"  />							
+	   
+							<p:outputLabel value="*CEP: "/> 			
+							<p:inputMask id="cep" value="#{cadastrarFamiliaBean.familia.cep}" mask="99999-999"   
+							required="true" requiredMessage="O campo CEP deve ser preenchido."   size="18" maxlength="9"  />					
+
+							<p:outputLabel value="*Telefone: "/> 			
+							<p:inputMask id="telefone" value="#{cadastrarFamiliaBean.familia.telefone}" mask="(99)9999?9-9999"   
+							required="true" requiredMessage="O campo Telefone deve ser preenchido."   size="18" maxlength="60"  />	
+
+					</p:panelGrid>					
+	
+				</p:tab>
+				
+				
+			</p:tabView>
+			
+			<div class="btnAcao">
+				<p:commandButton  id="btnCadastrar" ajax="true"  actionListener="#{cadastrarFamiliaBean.cadastrar}"  icon="fa fa-check" value="Cadastrar" process="@form" update="@form"  />									
+			</div>
+		</div>
+				
+	
+		</h:form>
+	
+	</ui:define>
+	
+</ui:composition>

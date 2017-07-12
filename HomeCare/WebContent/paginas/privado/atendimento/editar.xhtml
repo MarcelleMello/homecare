@@ -1,0 +1,138 @@
+<ui:composition template="/WEB-INF/templates/Layout.xhtml"
+ xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">	
+	
+	<h:head>
+	
+	<script>
+	
+	
+	</script>
+	
+	
+	</h:head>
+	
+	<ui:define name="content">
+	
+		<h:form id="form" prependId="false">
+
+		<p:messages id="messages"  autoUpdate="true" closable="true" />
+				
+		<div class="ui-fluid" >
+			
+	
+		
+			<p:tabView  id="tabContainer" style="margin-top: 20px" >
+				
+					<p:tab  title="Básico" >
+						<p:panelGrid columns="4" layout="grid"
+									columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-2, ui-grid-col-4"
+									styleClass="panelgrid-noborder" >
+									
+							<p:outputLabel value="Código da família: "/> 			
+							<p:inputText id="codFamilia" value="#{editarAtendimentoBean.atendimento.cidadao.familia.codigo}" readonly="true" style="color:red;"/>	
+							
+							<p:outputLabel value="Nome: "/> 			
+							<p:inputText id="nome" value="#{editarAtendimentoBean.atendimento.cidadao.nome}" readonly="true" style="color:red;"/>		
+						
+							<p:outputLabel value="*Peso (Kg): "/> 			
+							<p:inputText styleClass="peso" id="peso" value="#{editarAtendimentoBean.atendimento.peso}"  required="true"
+							requiredMessage="O campo Peso deve ser preenchido." size="18" maxlength="5"   >		
+						
+							</p:inputText>
+						
+							<p:outputLabel value="*Pressão (mmHg): "/> 			
+							<p:inputMask id="pressao" value="#{editarAtendimentoBean.atendimento.pressao}" required="true" 
+							requiredMessage="O campo Pressão deve ser preenchido." size="18" maxlength="4" mask="99x9"/>	
+							
+							<p:outputLabel value="*Glicose (mg/dl): "/> 			
+							<p:inputMask id="glicose" value="#{editarAtendimentoBean.atendimento.glicose}"  required="true"
+							requiredMessage="O campo Glicose deve ser preenchido." size="18" maxlength="4" mask="9999"/>				
+						
+						
+							<p:outputLabel value="Data última consulta: "/> 			
+							<p:calendar id="dataUltimaConsulta" converter="localDateConverter" value="#{editarAtendimentoBean.atendimento.dataUltimaConsulta}" 
+								pattern="dd/MM/yyyy" locale="pt" mask="true" 
+								requiredMessage="O campo Data da última consulta deve ser preenchido."  
+								size="18" converterMessage="Data da última consulta inválida">								
+							</p:calendar>	
+							
+							<p:outputLabel value="Observações: "/> 			
+							<p:inputTextarea id="observacoes" value="#{editarAtendimentoBean.atendimento.observacoes}" 
+								cols="20" rows="5" size="18" maxlength="250" />
+		
+						</p:panelGrid>
+					</p:tab>
+					
+					
+					<p:tab id="tabTuberculose" title="Tuberculose" >
+				
+						<p:panelGrid  columns="4" layout="grid"
+									columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-2, ui-grid-col-4"
+									styleClass="tuberculose panelgrid-noborder"  >
+									
+							<p:outputLabel value="Tratamento supervisionado: "/> 			
+							<p:selectOneRadio id="tratamentoSupervisionado" requiredMessage="O campo Tratamento supervisionado deve ser selecionado." 
+							size="30" maxlength="60" value="#{editarAtendimentoBean.atendimento.tratamentoSupervisionado}" >
+								<f:selectItems value="#{editarAtendimentoBean.tratamentoSupervisionado}" />	
+							</p:selectOneRadio>	
+							
+							<p:outputLabel value="Reações indesejadas: "/> 			
+							<p:selectOneRadio id="reacoesIndesejadas"  requiredMessage="O campo Reações indesejadas deve ser selecionado." 
+							size="30" maxlength="60" value="#{editarAtendimentoBean.atendimento.reacoesIndesejadas}" >
+								<f:selectItems value="#{editarAtendimentoBean.reacoesIndesejadas}" />	
+							</p:selectOneRadio>		
+							
+							<p:outputLabel value="Toma medicacao: "/> 			
+							<p:selectOneMenu id="tomaMedicacao"  requiredMessage="O campo Toma medicação deve ser selecionado." 
+							size="30" maxlength="60" value="#{editarAtendimentoBean.atendimento.tomaMedicacao}" >
+								<f:selectItems value="#{editarAtendimentoBean.tomaMedicacao}" />	
+							</p:selectOneMenu>	
+							
+							<p:outputLabel value="Exame de escarro: "/> 			
+							<p:selectOneMenu id="exameEscarro"  requiredMessage="O campo Exame de escarro deve ser selecionado." 
+							size="30" maxlength="60" value="#{editarAtendimentoBean.atendimento.exameEscarro}" >
+								<f:selectItems value="#{editarAtendimentoBean.exameEscarro}" />	
+							</p:selectOneMenu>		
+							
+									
+						</p:panelGrid>
+					
+					</p:tab>
+				
+				</p:tabView>
+	
+	
+		<div class="btnAcao">
+	
+			<h:panelGrid  columns="2" >
+			
+				<p:commandButton id="btnVoltar" icon="fa fa-reply" action="consultarAtendimento" ajax="false" 
+				value="Voltar" title="Voltar" immediate="true" />
+				
+				<p:commandButton  id="btnAtualizar" ajax="true"  actionListener="#{editarAtendimentoBean.atualizar}"  icon="fa fa-check" value="Atualizar" 
+				process="@form" update="@form"  />
+			
+			</h:panelGrid>    										
+		</div>
+		
+		<br></br><br></br>
+		
+	
+		
+		
+			
+			
+		</div> 
+	
+	
+
+		
+		</h:form>
+	
+	</ui:define>
+	
+</ui:composition>

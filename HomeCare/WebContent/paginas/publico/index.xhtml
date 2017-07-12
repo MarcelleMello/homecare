@@ -92,7 +92,7 @@
 			
 			<div class="panel panel-primary"> 
 				<div class="panel-heading"> 
-						<h3>Login de Usuários</h3> 
+						<div align="center"><h:graphicImage library="algaworks" name="images/logo1.png" height="90%" width="90%"/></div>
 				</div> 
 			
 					<div class="panel-body"> 
@@ -109,7 +109,7 @@
 						  	
 							
 							<div class="form-group">
-							    <p:inputText id="Senha" value="#{loginBean.senha}"
+							    <p:password id="Senha" value="#{loginBean.senha}"
 								    placeholder="Senha" 
 								    styleClass="form-control input-lg"  
 								    required="true" 
@@ -120,7 +120,7 @@
 			
 			
 					<div class="panel-footer"> 
-						<h:commandButton id="btnLogin" value="Entrar" action="#{loginBean.realizarLogin}" 
+						<h:commandButton id="btnLogin" value="Entrar" action="#{loginBean.realizarLogin()}" 
 									ajax="false" styleClass="btn btn-success btn-lg btn-block" />
 						<hr/> Esqueceu a senha de acesso? 
 						<a href="#" data-target="#janela" data-toggle="modal"> Clique aqui </a> 

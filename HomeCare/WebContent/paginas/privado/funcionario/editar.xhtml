@@ -30,7 +30,7 @@
 							required="true" requiredMessage="O campo Telefone deve ser preenchido."   size="18" maxlength="60"  />							
 										 
 							<p:outputLabel value="Matrícula: "/> 			
-							<p:inputText id="matricula" value="#{editarFuncionarioBean.funcionario.codigo}" disabled="true" styleClass="negrito"/>						 
+							<p:inputText id="matricula" value="#{editarFuncionarioBean.funcionario.codigo}" readonly="true"/>						 
 										   
 							<p:outputLabel value="Micro Area: "/> 			
 							<p:inputText id="microarea" value="#{editarFuncionarioBean.funcionario.microArea}" required="true" 
@@ -53,10 +53,10 @@
 							</p:selectOneMenu>
 																		   
 							<p:outputLabel value="Ativo:" styleClass="nomeCampo" />						
-							<p:selectOneMenu id="ativo" required="true" requiredMessage="O campo Perfil deve ser preenchido.  " 
+							<p:selectOneRadio id="ativo" required="true" requiredMessage="O campo Perfil deve ser preenchido.  " 
 							size="30" maxlength="60" value="#{editarFuncionarioBean.funcionario.ativo}">
 								<f:selectItems value="#{editarFuncionarioBean.simNao}" />	
-							</p:selectOneMenu>	
+							</p:selectOneRadio>	
 							
 							
 							<h:inputHidden id="id" value="#{editarFuncionarioBean.funcionario.id}" />	
@@ -67,6 +67,7 @@
 				
 				
 			</p:tabView>
+			
 			
 			<div class="btnAcao">
 				<p:commandButton  id="btnAtualizar" ajax="true"  actionListener="#{editarFuncionarioBean.atualizar}"  icon="fa fa-check" value="Atualizar" process="@form" update="@form"  />									

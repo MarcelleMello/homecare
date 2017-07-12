@@ -15,28 +15,41 @@ public class Autenticacao implements PhaseListener {
 
 	private static final long serialVersionUID = 7894192061613723345L;
 	
-	private static List<String> restritos, livres, admin, primeiroAcesso;
+	private static List<String> home, funcionario, cidadao, familia, livres;
 
 	 //lista de paginas restrias e livres
 	static {
 		
-		if( restritos == null ) {
-			restritos = new ArrayList<String>();
-			restritos.add("/paginas/privado/index.xhtml");
+		if( home == null ) {
+			home = new ArrayList<String>();
+			home.add("/paginas/privado/index.xhtml");
+		}
+		
+		if( funcionario == null ) {
+			funcionario = new ArrayList<String>();
+			funcionario.add("/paginas/funcionario/consultar.xhtml");
+			funcionario.add("/paginas/funcionario/cadastrar.xhtml");
+			funcionario.add("/paginas/funcionario/editar.xhtml");
+		}
+		
+		if( familia == null ) {
+			familia = new ArrayList<String>();
+			familia.add("/paginas/familia/consultar.xhtml");
+			familia.add("/paginas/familia/cadastrar.xhtml");
+			familia.add("/paginas/familia/editar.xhtml");
+		}
+		
+		if( cidadao == null ) {
+			cidadao = new ArrayList<String>();
+			cidadao.add("/paginas/cidadao/consultar.xhtml");
+			cidadao.add("/paginas/cidadao/cadastrar.xhtml");
+			cidadao.add("/paginas/cidadao/editar.xhtml");
 		}
 		
 		if( livres == null ) {
 			livres = new ArrayList<String>();
 			livres.add("/paginas/publico/index.xhtml");
 		}
-		
-		if( admin == null ) {
-			admin = new ArrayList<String>();
-			admin.add("/paginas/privado/admin/cadastrar.xhtml");
-			admin.add("/paginas/privado/admin/consultar.xhtml");
-			admin.add("/paginas/privado/admin/editar.xhtml");
-		}
-		
 	}
 	
 	//notificando antes e depois de todas as fases
@@ -62,42 +75,36 @@ public class Autenticacao implements PhaseListener {
 	   
 	    String paginaDestino = fc.getViewRoot().getViewId();
 		
-		boolean urlProtegida, urlAdmin;
+		boolean urlAdmin, urlHome, urlAgente;
 		
-		urlProtegida = (restritos.contains(paginaDestino)); //verifica se a pagina e protegida 
+		urlAgente = (cidadao.contains(paginaDestino)); //verifica se a pagina e protegida 
 		
-		urlAdmin = (admin.contains(paginaDestino)); //verificar se a pagina e de administracao
+		urlAdmin = (funcionario.contains(paginaDestino)); //verifica se a pagina e protegida 
+		
+		urlHome = (home.contains(paginaDestino)); //verificar se a pagina e de administracao
 		
 		boolean sessaoExpirou = (boolean) ((ec.getSessionMap().get("sessaoExpirou") != null) ? ec.getSessionMap().get("sessaoExpirou") : false);  
 
 		try {
 			//pagina restrita e usuario nao logado 
-			if(urlProtegida && !logado && !sessaoExpirou) {
+			if((urlHome || urlAdmin || urlAgente) && !logado && !sessaoExpirou) {
 				ec.redirect(path + "/paginas/publico/403.jsf");
 			
 			//nao sendo pagina restrita, nao estando logado , sessao expirou, pagina nao for de admin e pagina nao for de primeiro acesso
-			} else if(!urlProtegida && !logado && sessaoExpirou && !urlAdmin) {
+			} else if(!(urlHome || urlAdmin || urlAgente) && !logado && sessaoExpirou && !urlAdmin) {
 				ec.getSessionMap().put("sessaoExpirou", false);  
 				ec.redirect(path + "/paginas/publico/index.jsf?faces-redirect=true&includeViewParams=true&sessaoexpirou=true");
 				
 			//pagina adiministrador e usuario nao logado	
-			} else if(urlAdmin && !logado && !sessaoExpirou) {
+			} else if((urlHome || urlAdmin || urlAgente) && !logado && !sessaoExpirou) {
 				ec.redirect(path + "/paginas/public/403.jsf");
 			
-			} else if(urlAdmin && !logado && !sessaoExpirou) {
+			} else if((urlHome || urlAdmin || urlAgente) && !logado && !sessaoExpirou) {
 				ec.redirect(path + "/paginas/public/403.jsf");
 			
 			}
 		} catch (Exception ex) {
 	
 		}
-	}
-
-	public static List<String> getPrimeiroAcesso() {
-		return primeiroAcesso;
-	}
-
-	public static void setPrimeiroAcesso(List<String> primeiroAcesso) {
-		Autenticacao.primeiroAcesso = primeiroAcesso;
 	}
 }

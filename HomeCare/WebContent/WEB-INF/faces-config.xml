@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<faces-config
-    xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
-    version="2.2">
-    
-    <navigation-rule>
-      <from-view-id></from-view-id>
+<faces-config version="2.1" xmlns="http://java.sun.com/xml/ns/javaee"
+ xmlns:xi="http://www.w3.org/2001/XInclude"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd">
+ <navigation-rule>
 	  <navigation-case>
 		  <from-outcome>login</from-outcome>
 		  <to-view-id>/paginas/publico/index.jsf</to-view-id>
@@ -15,7 +11,6 @@
 	</navigation-rule>
 	
     <navigation-rule>
-      <from-view-id></from-view-id>
 	  <navigation-case>
 		  <from-outcome>principal</from-outcome>
 		  <to-view-id>/paginas/privado/index.jsf</to-view-id>
@@ -23,32 +18,111 @@
 	  </navigation-case>
 	</navigation-rule>
 	
+	 <!-- FUNCIONARIO -->
 	
 	<navigation-rule>
-      <from-view-id></from-view-id>
 	  <navigation-case>
 		  <from-outcome>cadastrarFuncionario</from-outcome>
-		  <to-view-id>/paginas/privado/admin/cadastrar.jsf</to-view-id>
+		  <to-view-id>/paginas/privado/funcionario/cadastrar.jsf</to-view-id>
 		  <redirect/>
 	  </navigation-case>
 	</navigation-rule>
 	
 	
 	<navigation-rule>
-      <from-view-id></from-view-id>
 	  <navigation-case>
 		  <from-outcome>consultarFuncionario</from-outcome>
-		  <to-view-id>/paginas/privado/admin/consultar.jsf</to-view-id>
+		  <to-view-id>/paginas/privado/funcionario/consultar.jsf</to-view-id>
 		  <redirect/>
 	  </navigation-case>
 	</navigation-rule>
 	
 	 <navigation-rule>
-      <from-view-id></from-view-id>
 	  <navigation-case>
 		  <from-outcome>editarFuncionario</from-outcome>
-		  <to-view-id>/paginas/privado/admin/editar.jsf</to-view-id>
+		  <to-view-id>/paginas/privado/funcionario/editar.jsf</to-view-id>
 	
+	  </navigation-case>
+	</navigation-rule>
+	
+	
+	 <!-- FAMILIA -->
+
+	<navigation-rule>
+	  <navigation-case>
+		  <from-outcome>cadastrarFamilia</from-outcome>
+		  <to-view-id>/paginas/privado/familia/cadastrar.jsf</to-view-id>
+		  <redirect/>
+	  </navigation-case>
+	</navigation-rule>
+	
+	
+	<navigation-rule>
+	  <navigation-case>
+		  <from-outcome>consultarFamilia</from-outcome>
+		  <to-view-id>/paginas/privado/familia/consultar.jsf</to-view-id>
+		  <redirect/>
+	  </navigation-case>
+	</navigation-rule>
+	
+	 <navigation-rule>
+	  <navigation-case>
+		  <from-outcome>editarFamilia</from-outcome>
+		  <to-view-id>/paginas/privado/familia/editar.jsf</to-view-id>
+	
+	  </navigation-case>
+	</navigation-rule>
+	
+	 
+	 <!-- CIDADAO -->
+	 
+	 <navigation-rule>
+	  <navigation-case>
+		  <from-outcome>cadastrarCidadao</from-outcome>
+		  <to-view-id>/paginas/privado/cidadao/cadastrar.jsf</to-view-id>
+	  </navigation-case>
+	</navigation-rule>
+	
+	
+	<navigation-rule>
+	  <navigation-case>
+		  <from-outcome>consultarCidadao</from-outcome>
+		  <to-view-id>/paginas/privado/cidadao/consultar.jsf</to-view-id>
+		  <redirect/>
+	  </navigation-case>
+	</navigation-rule>
+	
+	 <navigation-rule>
+	  <navigation-case>
+		  <from-outcome>editarCidadao</from-outcome>
+		  <to-view-id>/paginas/privado/cidadao/editar.jsf</to-view-id>
+	  </navigation-case>
+	</navigation-rule>
+	
+	
+	
+	<!-- ATENDIMENTO -->
+	
+	<navigation-rule>
+	  <navigation-case>
+		  <from-outcome>cadastrarAtendimento</from-outcome>
+		  <to-view-id>/paginas/privado/atendimento/cadastrar.jsf</to-view-id>
+	  </navigation-case>
+	</navigation-rule>
+	
+	
+	<navigation-rule>
+	  <navigation-case>
+		  <from-outcome>consultarAtendimento</from-outcome>
+		  <to-view-id>/paginas/privado/atendimento/consultar.jsf</to-view-id>
+		  <redirect/>
+	  </navigation-case>
+	</navigation-rule>
+	
+	 <navigation-rule>
+	  <navigation-case>
+		  <from-outcome>editarAtendimento</from-outcome>
+		  <to-view-id>/paginas/privado/atendimento/editar.jsf</to-view-id>
 	  </navigation-case>
 	</navigation-rule>
 	
@@ -73,10 +147,7 @@
 		</locale-config>
 	</application>
 	
-	
 	<factory>
         <exception-handler-factory>br.com.homecare.util.CustomExceptionHandlerFactory</exception-handler-factory>
     </factory>
-   
-
 </faces-config>

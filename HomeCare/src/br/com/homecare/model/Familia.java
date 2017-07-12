@@ -1,19 +1,24 @@
 package br.com.homecare.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 public class Familia implements Serializable{
 
 	private static final long serialVersionUID = 6269331546118463257L;
 	
-	private Integer id;
-	private String codigo;
+	private Integer id; 
+	private String codigo; //unico
 	private String endereco;
-	private String bairro;
+	private String bairro; 
+	private String complemento; //opcional
+	private String numero; 
 	private String cep;
 	private String telefone;
-	private Funcionario funcionario;
-	
+	private LocalDate dataCadastro;
+
+	private Funcionario funcionario; //agente cadastrador
+
 	public Familia() {
 		// TODO Auto-generated constructor stub
 	}
@@ -76,6 +81,30 @@ public class Familia implements Serializable{
 
 	public void setFuncionario(Funcionario funcionario) {
 		this.funcionario = funcionario;
+	}
+
+	public String getComplemento() {
+		return complemento;
+	}
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
+	}
+
+	public String getNumero() {
+		return numero;
+	}
+
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
+
+	public LocalDate getDataCadastro() {
+		return dataCadastro;
+	}
+
+	public void setDataCadastro(LocalDate dataCadastro) {
+		this.dataCadastro = dataCadastro;
 	}
 
 	@Override

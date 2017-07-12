@@ -6,7 +6,6 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
-
 import br.com.homecare.model.Funcionario;
 import br.com.homecare.model.tipo.SimNao;
 import br.com.homecare.service.FuncionarioService;
@@ -27,7 +26,8 @@ public class LoginBean extends AbstractBean implements Serializable {
 	
 	@PostConstruct
 	public void init() {
-		
+	
+	
 	}
 	
 	public String realizarLogin() {
@@ -35,7 +35,7 @@ public class LoginBean extends AbstractBean implements Serializable {
 			
 			FuncionarioService service = new FuncionarioService();
 
-			Funcionario f = service.realizarLogin(matricula, Util.getHash(senha, "MD5"));
+			Funcionario f = service.realizarLogin(matricula, Util.md5(senha));
 			
 			if(f == null) {
 				displayErrorMessage("Matrícula e/ou senha invalido.");

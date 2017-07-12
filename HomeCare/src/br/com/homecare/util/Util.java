@@ -6,6 +6,10 @@ import java.io.FileOutputStream;
 import java.net.InetAddress;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -189,5 +193,25 @@ public class Util {
 		return mineType;
 	}
 	
+	public static int obterIdade(LocalDate aniversario) {
+	    LocalDate dataAtual = LocalDate.now();
+	    Period periodo = Period.between(aniversario, dataAtual);
+	    return periodo.getYears();
+	}
+	
+	static public Integer getInteger(ResultSet rs, String strColName) throws SQLException {
+        int nValue = rs.getInt(strColName);
+        return rs.wasNull() ? null : nValue;
+    }
+	
+	static public String getString(ResultSet rs, String strColName) throws SQLException {
+        String nValue = rs.getString(strColName);
+        return rs.wasNull() ? null : nValue;
+    }
+	
+	static public LocalDate getDate(ResultSet rs, String strColName) throws SQLException {
+		java.sql.Date nValue = rs.getDate(strColName);
+        return rs.wasNull() ? null : nValue.toLocalDate();
+    }
 	
 }

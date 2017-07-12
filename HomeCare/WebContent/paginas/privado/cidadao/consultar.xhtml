@@ -1,0 +1,81 @@
+<ui:composition template="/WEB-INF/templates/Layout.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">	
+	
+	<h:head></h:head>
+	
+	<ui:define name="content">
+	
+		<h:form id="form" >
+	
+		<p:messages id="messages"  autoUpdate="true" closable="true" />
+		  
+		<br/>  
+	
+			<p:inputText id="nome" size="30" placeholder="Digite o nome do cidadão" value="#{consultarCidadaoBean.cidadaoFiltro.nome}"/>
+			<br/><br/>
+			
+			<p:inputText id="codFamilia" size="30" placeholder="Digite o código da família" value="#{consultarCidadaoBean.cidadaoFiltro.familia.codigo}"/>
+			<br/><br/>
+	
+			<p:commandButton value="Pesquisar" icon="fa fa-search" id="btFiltrar" update="@this container" ajax="true" 
+			actionListener="#{consultarCidadaoBean.consultar}" process="@this nome codFamilia"/>
+    		
+		<br/><br/>
+	
+		<h:panelGroup id="container">
+			<p:dataTable  id="cidadaos"  value="#{consultarCidadaoBean.cidadaos}" var="c" 
+			reflow="true" emptyMessage="Sem resultados">
+		
+				
+				 <p:column headerText="Cód. da família" >
+		           		<h:outputText value="#{c.familia.codigo}" style="color:red;"/>
+		       </p:column>
+		
+		       <p:column headerText="Nome" >
+		          		<h:outputText value="#{c.nome}" />
+		       </p:column>
+		       
+		       <p:column  headerText="Data de nasc." >   
+						<h:outputText value="#{c.dataNascimento}" converter="localDateConverter" />
+				</p:column>
+		       
+		       <p:column headerText="CPF" >
+			            <h:outputText value="#{c.cpf}" rendered="#{not empty c.cpf}"/>
+			           	<h:outputText value="n/d" rendered="#{empty c.cpf}"/>
+		       </p:column>
+		       
+		       <p:column headerText="DNV" >
+		       		
+			      		<h:outputText value="#{c.dnv}" rendered="#{not empty c.dnv}"/>
+			            <h:outputText value="n/d" rendered="#{empty c.dnv}"/>
+		          
+		       </p:column>
+		       
+		       <p:column headerText="Ações" width="100">
+			       <div align="center">
+			       		<p:commandButton icon="fa fa-pencil-square-o" action="editarCidadao" ajax="false" title="Editar cidadão">
+			       			<f:param name="idCidadao" value="#{c.id}" />
+			       		</p:commandButton> 
+			       		
+			       		<p:spacer width="5" />
+			       		
+			       		
+			       		<p:commandButton icon="fa fa-user-md" action="cadastrarAtendimento" ajax="false" title="Registrar atendimento">
+			       			<f:param name="idCidadao" value="#{c.id}" />
+			       		</p:commandButton> 
+			       		
+			       </div>
+		       </p:column>               
+		    
+		    </p:dataTable >
+		</h:panelGroup>		
+	
+		</h:form>
+	
+	</ui:define>
+	
+</ui:composition>

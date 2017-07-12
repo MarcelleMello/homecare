@@ -54,10 +54,10 @@
 							</p:selectOneMenu>
 																		   
 							<p:outputLabel value="Ativo:" styleClass="nomeCampo" />						
-							<p:selectOneMenu id="ativo" required="true" requiredMessage="O campo Perfil deve ser preenchido.  " 
+							<p:selectOneRadio id="ativo" required="true" requiredMessage="O campo Perfil deve ser preenchido.  " 
 							size="30" maxlength="60" value="#{cadastrarFuncionarioBean.funcionario.ativo}">
 								<f:selectItems value="#{cadastrarFuncionarioBean.simNao}" />	
-							</p:selectOneMenu>		
+							</p:selectOneRadio>		
 							
 					</p:panelGrid>					
 	

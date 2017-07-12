@@ -93,7 +93,7 @@ public class FuncionarioDAO implements Serializable{
 	}
 
 	
-	public boolean obterPorMatricula(String matricula, Connection con) throws SQLException {
+	public boolean verificarMatricula(String matricula, Connection con) throws SQLException {
 		
 		String sql = "SELECT COUNT(*) AS TOTAL FROM TBL_FUNCIONARIO WHERE COD_FUNCIONARIO = ?";
 				
@@ -240,5 +240,44 @@ public Funcionario ObterPorId(int id, Connection con) throws SQLException {
 	 
 	}
 
-	
+	public static List<Funcionario> ListarTodos(Connection con) throws SQLException {
+		
+	    List<Funcionario> lista = new ArrayList<Funcionario>();
+	    
+	    String sql = " SELECT * FROM TBL_FUNCIONARIO F WHERE 1 " ;	     
+	      	      	      
+	    sql += " ORDER BY NOME ASC";
+	      	   		     
+	    PreparedStatement stmt = con.prepareStatement(sql);
+	    Funcionario func = null;
+ 
+	    ResultSet rs = stmt.executeQuery();
+	    
+	    while (rs.next()) {
+	   	 
+	    	func = new Funcionario();   
+			
+	    	func.setNome(rs.getString("NOME"));
+	    	func.setTelefone(rs.getString("TELEFONE"));
+	    	func.setCodigo(rs.getString("COD_FUNCIONARIO"));
+	    	func.setMicroArea(rs.getString("MICRO_AREA"));	    			    
+	    	func.setPerfil(Perfil.buscaEnum(rs.getInt("PERFIL")));		    
+	    	func.setComunidade(new Comunidade(rs.getInt("ID_COMUNIDADE")));
+		    func.setAtivo(SimNao.buscaEnum(rs.getInt("ATIVO")));
+		    
+		    LocalDate data = rs.getDate("DATA_CADASTRO").toLocalDate();    
+		    func.setDataCadastro(data);		
+		    
+		    func.setId(rs.getInt("ID_FUNCIONARIO")); 
+		    
+		    lista.add(func);
+		    
+	    }
+	    
+	    rs.close();
+	    stmt.close();        
+		
+	    return lista;
+
+	}
 }

@@ -1,0 +1,62 @@
+<ui:composition template="/WEB-INF/templates/Layout.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">	
+	
+	<h:head></h:head>
+	
+	<ui:define name="content">
+	
+		<h:form id="form" >
+	
+		<p:messages id="messages"  autoUpdate="true" closable="true" />
+		  
+		<br/>  
+	
+			<p:inputText id="codigo" size="30" placeholder="Digite o código da família" value="#{consultarFamiliaBean.familiaFiltro.codigo}"/>
+			<br/><br/>
+			<p:commandButton value="Pesquisar" icon="fa fa-search" id="btFiltrar" update="@this container" ajax="true" 
+			actionListener="#{consultarFamiliaBean.consultar}" process="@this codigo"/>
+    		
+		<br/><br/>
+	
+		<h:panelGroup id="container">
+			<p:dataTable  id="familias"  value="#{consultarFamiliaBean.familias}" var="f" 
+			reflow="true" emptyMessage="Sem resultados">
+		
+		       <p:column headerText="Código" >
+		          <h:outputText value="#{f.codigo}" />
+		       </p:column>
+		       
+		       <p:column headerText="Telefone" >
+		          <h:outputText value="#{f.telefone}" />
+		       </p:column>
+		       
+		       <p:column headerText="CEP" >
+		          <h:outputText value="#{f.cep}" />
+		       </p:column>
+		       
+		       <p:column headerText="Ações" width="100">
+			       <div align="center">
+			       		<p:commandButton icon="fa fa-pencil-square-o" action="editarFamilia" ajax="false" title="Atualizar família">
+			       			<f:param name="idFamilia" value="#{f.id}" />
+			       		</p:commandButton> 
+			       		
+			       		<p:spacer width="5" />
+			       		
+			       		<p:commandButton icon="fa fa-user-plus" action="cadastrarCidadao" ajax="false" title="Cadastrar cidadão">
+			       			<f:param name="idFamilia" value="#{f.id}" />
+			       		</p:commandButton> 
+			       </div>
+		       </p:column>               
+		    
+		    </p:dataTable >
+		</h:panelGroup>		
+	
+		</h:form>
+	
+	</ui:define>
+	
+</ui:composition>

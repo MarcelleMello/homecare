@@ -1,0 +1,88 @@
+<ui:composition template="/WEB-INF/templates/Layout.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">	
+	
+	<h:head></h:head>
+	
+	<ui:define name="content">
+	
+		<h:form id="form" >
+	
+		<p:messages id="messages"  autoUpdate="true" closable="true" />
+		  
+		<br/>  
+	
+			<p:inputText id="nome" size="30" placeholder="Digite o nome do cidadão" value="#{consultarAtendimentoBean.atendimentoFiltro.cidadao.nome}"/>
+			<br/><br/>
+			
+			<p:inputText id="codFamilia" size="30" placeholder="Digite o código da família" value="#{consultarAtendimentoBean.atendimentoFiltro.cidadao.familia.codigo}"/>
+			<br/><br/>
+	
+			<p:commandButton value="Pesquisar" icon="fa fa-search" id="btFiltrar" update="@this container" ajax="true" 
+			actionListener="#{consultarAtendimentoBean.consultar}" process="@this nome codFamilia"/>
+    		
+		<br/><br/>
+	
+		<h:panelGroup id="container">
+			<p:dataTable  id="cidadaos"  value="#{consultarAtendimentoBean.atendimentos}" var="a" 
+			reflow="true" emptyMessage="Sem resultados">
+
+				<p:column headerText="Cód. da família" >
+		           	<h:outputText value="#{a.cidadao.familia.codigo}" style="color:red;"/>
+		       </p:column>
+		
+		       <p:column headerText="Nome" >
+		          	<h:outputText value="#{a.cidadao.nome}" style="color:red;"/>
+		       </p:column>
+		       
+		       <p:column headerText="Peso (Kg)" >
+		          	<h:outputText value="#{a.peso}" rendered="#{not empty a.peso}"/>
+		          	<h:outputText value="n/d" rendered="#{empty a.peso}"/>
+		       </p:column>
+		       
+		        <p:column headerText="Pressão (mmHg)" >
+		          	<h:outputText value="#{a.pressao}" rendered="#{not empty a.pressao}"/>
+		          		<h:outputText value="n/d" rendered="#{empty a.pressao}"/>
+		       </p:column>
+		       
+		        <p:column headerText="Glicose (mg/dl)" >
+		          	<h:outputText value="#{a.glicose}" rendered="#{not empty a.glicose}"/>
+		          	<h:outputText value="n/d" rendered="#{empty a.glicose}"/>
+		       </p:column>
+		       
+		       <p:column  headerText="Data do atendimento" >   
+					<h:outputText value="#{a.dataAtendimento}" converter="localDateConverter" />
+				</p:column>
+
+		       <p:column headerText="Ações" width="100">
+			       <div align="center">
+			       		<p:commandButton icon="fa fa-pencil-square-o" action="editarAtendimento" ajax="false" title="Editar atendimento">
+			       			<f:param name="idAtendimento" value="#{a.id}" />
+			       		</p:commandButton> 
+			       		
+			       		<p:spacer width="5" />
+			       		
+			       		<p:commandButton icon="fa fa fa-trash" actionListener="#{consultarAtendimentoBean.excluir(a)}" ajax="true" title="Excluir atendimento" update="@form" >
+			       			<p:confirm header="Confirmation" message="Tem certeza que gostaria de excluir este atendimento?" icon="ui-icon-alert" />
+			       		</p:commandButton>
+			       		
+			       </div>
+		       </p:column>               
+		    
+		    </p:dataTable >
+		</h:panelGroup>		
+		
+		
+		 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+        	<p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+        	<p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+    	</p:confirmDialog>
+		
+		</h:form>
+	
+	</ui:define>
+	
+</ui:composition>

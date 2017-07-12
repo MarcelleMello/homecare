@@ -17,7 +17,7 @@
 	
 	
 
-			<p:inputText id="nome" size="30" placeholder="Digite aqui" value="#{consultarFuncionarioBean.funcionarioFiltro.nome}"/>
+			<p:inputText id="nome" size="30" placeholder="Digite o nome do funcionário" value="#{consultarFuncionarioBean.funcionarioFiltro.nome}"/>
 			<br/><br/>
 			<p:commandButton value="Pesquisar" icon="fa fa-search" id="btFiltrar" update="@this container" ajax="true" 
 			actionListener="#{consultarFuncionarioBean.consultar}" process="@this nome"/>
@@ -28,7 +28,7 @@
 	
 	<h:panelGroup id="container">
 	<p:dataTable  id="funcionarios"  value="#{consultarFuncionarioBean.funcionarios}" var="f" 
-	reflow="true">
+	reflow="true" emptyMessage="Sem resultados">
 
        <p:column headerText="Nome" >
           <h:outputText value="#{f.nome}" />

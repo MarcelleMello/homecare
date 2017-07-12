@@ -10,9 +10,6 @@ import br.com.homecare.model.Comunidade;
 
 public class ComunidadeService implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -1007771106079137090L;
 
 	public List<Comunidade> listarTodos() throws Exception {

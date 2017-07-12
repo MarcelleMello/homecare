@@ -15,6 +15,7 @@ public class AbstractBean implements Serializable{
 	public AbstractBean() {
 		super();
 	}
+	
 	/**
 	 * exibe uma mensagem de alerta/erro 
 	 * @param message 

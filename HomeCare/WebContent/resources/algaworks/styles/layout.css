@@ -6,13 +6,14 @@
 	right: 0;
 	left: 0;
 	min-height: 50px;
-	z-index: 9999;	
+	z-index: 9999;
 }
 
 
 .aw-topbar > img {
 	margin-top: 10px;
 	margin-left: 5px;
+	width: 180px;
 } 
 
 /* BOTTOMBAR */

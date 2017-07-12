@@ -38,7 +38,7 @@ public class FuncionarioService implements Serializable {
 			f.setSenha(Util.md5(f.getSenha()));
 			
 			//se for true quer dizer que foi encontrado um usuário com a mesma matrícula
-			if(dao.obterPorMatricula(f.getCodigo(), con)) {
+			if(dao.verificarMatricula(f.getCodigo(), con)) {
 				throw new ServiceException("Matrícula existente");
 			}
 			
@@ -55,12 +55,12 @@ public class FuncionarioService implements Serializable {
 		}
 	}
 	
-	public List<Funcionario> consultar(Funcionario funcionarioFiltrado) throws ServiceException, Exception {		 
+	public List<Funcionario> consultar(Funcionario funcionarioFiltro) throws ServiceException, Exception {		 
 		Connection con = DBUtil.getConnection();
 		List<Funcionario> funcionarios = null;
 		try {
 			
-			funcionarios = FuncionarioDAO.consultar(funcionarioFiltrado, con);
+			funcionarios = FuncionarioDAO.consultar(funcionarioFiltro, con);
 		
 		} catch (Exception e) {
 			throw new Exception(e);
@@ -93,6 +93,8 @@ public class FuncionarioService implements Serializable {
 		Funcionario funcionario = null;
 		try {
 			
+			DBUtil.beginTransaction(con);
+			
 			funcionario = dao.ObterPorId(f.getId(), con);
 			
 			funcionario.setNome(f.getNome());
@@ -105,9 +107,11 @@ public class FuncionarioService implements Serializable {
 			funcionario.setTelefone(f.getTelefone());
 			funcionario.setMicroArea(f.getMicroArea());
 		
-			dao.Atualizar(f, con);
+			dao.Atualizar(funcionario, con);
 		
+			DBUtil.commit(con);
 		} catch (Exception e) {
+			DBUtil.rollback(con);
 			throw new Exception(e);
 		} finally {
 			DBUtil.closeConnection(con);
@@ -115,6 +119,19 @@ public class FuncionarioService implements Serializable {
 		
 	}
 	
-
+		public List<Funcionario> ListarTodos() throws ServiceException, Exception {		 
+			Connection con = DBUtil.getConnection();
+			List<Funcionario> lista = null;
+			try {
+				
+				lista = FuncionarioDAO.ListarTodos(con);
+			
+			} catch (Exception e) {
+				throw new Exception(e);
+			} finally {
+				DBUtil.closeConnection(con);
+			}
+			return lista;
+		}
 	
 	}
